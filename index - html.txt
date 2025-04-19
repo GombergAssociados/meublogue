@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomberg&Associados - Escritório de Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gold-bg {
+            background-color: #D4AF37;
+        }
+        .specialty-card {
+            transition: all 0.3s ease;
+        }
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .file-actions {
+            display: flex;
+            gap: 10px;
+        }
+        #fileList {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .lgbtq-button {
+            background: linear-gradient(45deg, #FF0000, #FF8C00, #FFD700, #008000, #0000FF, #4B0082, #EE82EE);
+            color: white;
+            font-weight: bold;
+            border: none;
+            animation: rainbow 5s linear infinite;
+            background-size: 600% 600%;
+        }
+        .lgbtq-text {
+            background: linear-gradient(45deg, #FF0000, #FF8C00, #FFD700, #008000, #0000FF, #4B0082, #EE82EE);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+            animation: rainbow 5s linear infinite;
+            background-size: 600% 600%;
+        }
+        @keyframes rainbow {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        .article-content {
+            display: none;
+        }
+    </style>
+</head>
+<body class="gold-bg text-black font-sans">
+    <!-- Header -->
+    <header class="gold-bg shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
+                    <span class="text-white font-bold text-xl">G&A</span>
+                </div>
+                <h1 class="text-2xl font-bold">Gomberg&Associados</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <button onclick="openModal('aboutModal')" class="hover:text-gray-700 font-medium transition">Sobre Nós</button>
+                <button onclick="openModal('specialtiesModal')" class="hover:text-gray-700 font-medium transition">Nossas Especialidades</button>
+                <button onclick="openModal('contactModal')" class="hover:text-gray-700 font-medium transition">Nossos Contatos</button>
+                <button onclick="openModal('documentsModal')" class="hover:text-gray-700 font-medium transition">Documentos</button>
+                <button onclick="openModal('genderModal')" class="lgbtq-button px-4 py-2 rounded-lg transition">Redesignação Sexual</button>
+            </nav>
+            <button class="md:hidden text-2xl" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden gold-bg px-4 pb-4">
+            <button onclick="openModal('aboutModal')" class="block w-full text-left py-2 hover:bg-black hover:text-white px-2 rounded">Sobre Nós</button>
+            <button onclick="openModal('specialtiesModal')" class="block w-full text-left py-2 hover:bg-black hover:text-white px-2 rounded">Nossas Especialidades</button>
+            <button onclick="openModal('contactModal')" class="block w-full text-left py-2 hover:bg-black hover:text-white px-2 rounded">Nossos Contatos</button>
+            <button onclick="openModal('documentsModal')" class="block w-full text-left py-2 hover:bg-black hover:text-white px-2 rounded">Documentos</button>
+            <button onclick="openModal('genderModal')" class="lgbtq-button block w-full text-left py-2 hover:bg-black hover:text-white px-2 rounded">Redesignação Sexual</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 lgbtq-text">Excelência Jurídica ao Seu Alcance</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Defendendo seus direitos com expertise e comprometimento.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="openModal('contactModal')" class="lgbtq-button px-6 py-3 rounded-lg font-bold hover:opacity-90 transition">
+                    Fale Conosco
+                </button>
+                <button onclick="openModal('specialtiesModal')" class="lgbtq-button px-6 py-3 rounded-lg font-bold hover:opacity-90 transition">
+                    Nossas Especialidades
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Preview -->
+    <section class="py-12 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">Artigos Jurídicos</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Article 1 - Direito de Família -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gray-300"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Direito de Família: Novas Tendências</h3>
+                        <p class="text-gray-600 mb-4">Entenda as recentes mudanças na legislação sobre pensão alimentícia e guarda compartilhada.</p>
+                        <a href="#" onclick="toggleArticle('familyArticle')" class="text-black font-medium hover:underline">Ler mais</a>
+                        <div id="familyArticle" class="article-content mt-4">
+                            <!-- Content will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 - Direito Trabalhista -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gray-300"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Direito Trabalhista: Seus Direitos</h3>
+                        <p class="text-gray-600 mb-4">Saiba como proceder em casos de rescisão indireta e demissão sem justa causa.</p>
+                        <a href="#" onclick="toggleArticle('laborArticle')" class="text-black font-medium hover:underline">Ler mais</a>
+                        <div id="laborArticle" class="article-content mt-4">
+                            <!-- Content will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 3 - Processo Criminal -->
+                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gray-300"></div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Processo Criminal: O Que Fazer?</h3>
+                        <p class="text-gray-600 mb-4">Orientações essenciais para acompanhamento em delegacias e audiências criminais.</p>
+                        <a href="#" onclick="toggleArticle('criminalArticle')" class="text-black font-medium hover:underline">Ler mais</a>
+                        <div id="criminalArticle" class="article-content mt-4">
+                            <!-- Content will be added dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Sobre Nós</h2>
+            <p class="mb-4">O escritório Gomberg&Associados é referência em advocacia especializada, atuando com excelência na defesa dos direitos de nossos clientes há mais de três anos.</p>
+            <p>Nossa equipe é composta por profissionais altamente qualificados e comprometidos em oferecer soluções jurídicas eficientes, personalizadas e éticas para cada caso. Combinando tradição e inovação, buscamos sempre os melhores resultados através de uma abordagem estratégica e humanizada.</p>
+        </div>
+    </div>
+
+    <!-- Specialties Modal -->
+    <div id="specialtiesModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('specialtiesModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-6">Nossas Especialidades</h2>
+            
+            <div class="grid gap-6">
+                <!-- Direito Civil -->
+                <div class="specialty-card bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-black">Direito de Família</h3>
+                    <p class="text-gray-700">Atuamos em todas as questões familiares com sensibilidade e expertise:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Divórcio e separação consensual ou litigiosa</li>
+                        <li>Pensão alimentícia (fixação, revisão e execução)</li>
+                        <li>Partilha de bens e inventários</li>
+                        <li>Guarda de filhos (compartilhada ou unilateral)</li>
+                        <li>Regulamentação de visitas</li>
+                        <li>Reconhecimento e dissolução de união estável</li>
+                    </ul>
+                </div>
+                
+                <!-- Direito Trabalhista -->
+                <div class="specialty-card bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-black">Direito Trabalhista</h3>
+                    <p class="text-gray-700">Defesa dos direitos trabalhistas de empregados e empregadores:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Rescisão indireta do contrato de trabalho</li>
+                        <li>Dispensa sem justa causa</li>
+                        <li>Reclamações trabalhistas</li>
+                        <li>Defesas em ações trabalhistas</li>
+                        <li>Assessoramento em negociações coletivas</li>
+                        <li>Orientação sobre direitos e deveres trabalhistas</li>
+                    </ul>
+                </div>
+                
+                <!-- Direito Criminal -->
+                <div class="specialty-card bg-gray-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-3 text-black">Direito Criminal</h3>
+                    <p class="text-gray-700">Atuação estratégica em todas as fases do processo penal:</p>
+                    <ul class="list-disc pl-5 mt-2 space-y-1">
+                        <li>Acompanhamento em delegacias e flagrantes</li>
+                        <li>Defesa em audiências criminais</li>
+                        <li>Habeas corpus e medidas cautelares</li>
+                        <li>Recursos criminais</li>
+                        <li>Assessoria a vítimas de crimes</li>
+                        <li>Processos de execução penal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contactModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-6">Nossos Contatos</h2>
+            
+            <div class="space-y-4">
+                <div class="flex items-center">
+                    <div class="bg-black text-white p-3 rounded-full mr-4">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">WhatsApp</p>
+                        <a href="https://wa.me/5511973383818" class="text-blue-600 hover:underline">(11) 97338-3818</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="bg-black text-white p-3 rounded-full mr-4">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="font-medium">E-mail</p>
+                        <a href="mailto:gombergeassociados@gmail.com" class="text-blue-600 hover:underline">gombergeassociados@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="pt-4">
+                    <p class="font-medium mb-2">Horário de Atendimento</p>
+                    <p>Segunda a Sexta: 9h às 18h</p>
+                    <p>Sábado: 9h às 12h (com agendamento prévio)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Documents Modal -->
+    <div id="documentsModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('documentsModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-6">Documentos Correlatos</h2>
+            
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Enviar novo documento</label>
+                <div class="flex flex-col space-y-4">
+                    <div class="flex">
+                        <input type="text" id="fileName" placeholder="Nome do documento" class="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black">
+                    </div>
+                    <div class="flex">
+                        <input type="file" id="fileInput" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
+                        <button onclick="document.getElementById('fileInput').click()" class="bg-gray-200 px-4 py-2 border rounded-lg hover:bg-gray-300 w-full">
+                            <i class="fas fa-paperclip mr-2"></i>Selecionar Arquivo
+                        </button>
+                    </div>
+                    <div>
+                        <select id="articleCategory" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black">
+                            <option value="">Selecione o artigo relacionado</option>
+                            <option value="familyArticle">Direito de Família</option>
+                            <option value="laborArticle">Direito Trabalhista</option>
+                            <option value="criminalArticle">Processo Criminal</option>
+                        </select>
+                    </div>
+                    <div class="flex justify-end">
+                        <button onclick="uploadFile()" class="lgbtq-button px-6 py-2 rounded-lg font-bold hover:opacity-90">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="fileList" class="border rounded-lg p-4">
+                <h3 class="font-bold mb-4">Documentos disponíveis</h3>
+                <div id="fileItems">
+                    <!-- Files will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gender Reassignment Modal -->
+    <div id="genderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('genderModal')">&times;</span>
+            <h2 class="text-2xl font-bold mb-4">Redesignação Sexual</h2>
+            
+            <div class="mb-4">
+                <p class="mb-4">A redesignação sexual, também conhecida como cirurgia de confirmação de gênero, é um procedimento médico que ajuda pessoas transgênero a alinhar suas características físicas com sua identidade de gênero.</p>
+                
+                <p class="mb-4 font-semibold">No Brasil, o SUS (Sistema Único de Saúde) e os planos de saúde são obrigados por lei a cobrir esses procedimentos. No entanto, muitas vezes os planos de saúde negam a cobertura indevidamente.</p>
+                
+                <p class="mb-4">Se você enfrentou negativa do plano de saúde para procedimentos de redesignação sexual, procure orientação de um advogado de sua confiança. Você tem direitos que podem ser exigidos judicialmente.</p>
+                
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                    <h3 class="font-bold text-blue-800 mb-2">Informações importantes:</h3>
+                    <p class="mb-2">• A negativa do plano de saúde pode ser combatida judicialmente</p>
+                    <p class="mb-2">• Processos judiciais para garantir a cobertura têm alto índice de sucesso</p>
+                    <p class="mb-2">• Você pode tem direito a indenização por danos morais</p>
+                </div>
+                
+                <div class="mt-6 text-center">
+                    <a href="https://cirurgia-de-redesignacao-vlw4jlp.gamma.site/" target="_blank" class="lgbtq-button inline-block px-6 py-3 rounded-lg font-bold hover:opacity-90 transition">
+                        Saiba mais sobre redesignação sexual
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 px-4">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
+                            <span class="text-black font-bold">G&A</span>
+                        </div>
+                        <h3 class="text-xl font-bold">Gomberg&Associados</h3>
+                    </div>
+                    <p class="mt-2 text-gray-400">Excelência jurídica desde 2022</p>
+                </div>
+                
+                <div class="flex space-x-4">
+                    <a href="https://wa.me/5511973383818" class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="mailto:gombergeassociados@gmail.com" class="bg-gray-700 text-white p-3 rounded-full hover:bg-gray-600 transition">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
+                <p>&copy; 2025 Gomberg&Associados - Todos os direitos reservados</p>
+                <p class="mt-1">OAB/SP 477.6146</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Modal functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.className === "modal") {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+        
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById("mobileMenu");
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+            } else {
+                menu.classList.add("hidden");
+            }
+        }
+
+        // Document management functions
+        let documents = [
+            { id: 1, name: "Modelo de Contrato", type: "pdf", category: "familyArticle" },
+            { id: 2, name: "Formulário de Procuração", type: "docx", category: "laborArticle" },
+            { id: 3, name: "Checklist Documentos", type: "xlsx", category: "criminalArticle" }
+        ];
+
+        function renderFiles() {
+            const fileItems = document.getElementById('fileItems');
+            fileItems.innerHTML = '';
+            
+            documents.forEach(doc => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'file-item';
+                fileItem.innerHTML = `
+                    <div>
+                        <span class="font-medium">${doc.name}</span>
+                        <span class="text-gray-500 text-sm ml-2">.${doc.type}</span>
+                        <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2">${getCategoryName(doc.category)}</span>
+                    </div>
+                    <div class="file-actions">
+                        <button onclick="editFileName(${doc.id})" class="text-blue-600 hover:text-blue-800">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button onclick="deleteFile(${doc.id})" class="text-red-600 hover:text-red-800">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                fileItems.appendChild(fileItem);
+            });
+            
+            // Update article contents with related documents
+            updateArticleContents();
+        }
+
+        function getCategoryName(categoryId) {
+            switch(categoryId) {
+                case 'familyArticle': return 'Família';
+                case 'laborArticle': return 'Trabalhista';
+                case 'criminalArticle': return 'Criminal';
+                default: return 'Geral';
+            }
+        }
+
+        function updateArticleContents() {
+            // Clear all article contents first
+            document.querySelectorAll('.article-content').forEach(el => {
+                el.innerHTML = '';
+            });
+            
+            // Group documents by category
+            const documentsByCategory = {};
+            documents.forEach(doc => {
+                if (!documentsByCategory[doc.category]) {
+                    documentsByCategory[doc.category] = [];
+                }
+                documentsByCategory[doc.category].push(doc);
+            });
+            
+            // Add documents to their respective articles
+            for (const [categoryId, docs] of Object.entries(documentsByCategory)) {
+                const articleContent = document.getElementById(categoryId);
+                if (articleContent) {
+                    const docsList = document.createElement('div');
+                    docsList.className = 'space-y-3';
+                    
+                    docs.forEach(doc => {
+                        const docItem = document.createElement('div');
+                        docItem.className = 'border-b pb-2';
+                        docItem.innerHTML = `
+                            <h4 class="font-medium">${doc.name}</h4>
+                            <div class="flex justify-between items-center mt-1">
+                                <span class="text-sm text-gray-500">.${doc.type}</span>
+                                <button onclick="downloadDocument(${doc.id})" class="text-blue-600 hover:text-blue-800 text-sm">
+                                    <i class="fas fa-download mr-1"></i>Baixar
+                                </button>
+                            </div>
+                        `;
+                        docsList.appendChild(docItem);
+                    });
+                    
+                    articleContent.appendChild(docsList);
+                }
+            }
+        }
+
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const fileNameInput = document.getElementById('fileName');
+            const articleCategory = document.getElementById('articleCategory');
+            
+            if (fileNameInput.value.trim() === '') {
+                alert('Por favor, insira um nome para o documento');
+                return;
+            }
+            
+            if (fileInput.files.length === 0) {
+                alert('Por favor, selecione um arquivo');
+                return;
+            }
+            
+            if (!articleCategory.value) {
+                alert('Por favor, selecione o artigo relacionado');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const fileType = file.name.split('.').pop().toLowerCase();
+            
+            // In a real application, you would upload the file to a server here
+            // For this demo, we'll just add it to our documents array
+            const newDoc = {
+                id: documents.length + 1,
+                name: fileNameInput.value.trim(),
+                type: fileType,
+                category: articleCategory.value
+            };
+            
+            documents.push(newDoc);
+            renderFiles();
+            
+            // Reset form
+            fileNameInput.value = '';
+            fileInput.value = '';
+            articleCategory.value = '';
+            
+            alert('Documento enviado com sucesso!');
+        }
+
+        function editFileName(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            
+            const newName = prompt('Editar nome do documento:', doc.name);
+            if (newName && newName.trim() !== '') {
+                doc.name = newName.trim();
+                renderFiles();
+            }
+        }
+
+        function deleteFile(id) {
+            if (confirm('Tem certeza que deseja excluir este documento?')) {
+                documents = documents.filter(d => d.id !== id);
+                renderFiles();
+            }
+        }
+
+        function downloadDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            
+            alert(`Simulando download do documento: ${doc.name}.${doc.type}`);
+            // In a real application, this would trigger the file download
+        }
+
+        function toggleArticle(articleId) {
+            event.preventDefault();
+            const articleContent = document.getElementById(articleId);
+            if (articleContent.style.display === 'block') {
+                articleContent.style.display = 'none';
+            } else {
+                articleContent.style.display = 'block';
+            }
+        }
+
+        // Initialize file list when page loads
+        document.addEventListener('DOMContentLoaded', renderFiles);
+    </script>
+</body>
+</html>
