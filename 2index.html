@@ -15,8 +15,8 @@
 
         /* Modal */
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); /* Efeito blur opcional */ }
-        .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px 30px 30px 30px; border: none; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; }
+        .modal-content { background-color: #fefefe; margin: 5% auto; /* Reduzido margem para caber formulário */ padding: 25px 30px 30px 30px; border: none; width: 90%; max-width: 600px; /* Ajuste largura modal contato */ border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; /* Aumenta área de clique */ }
         .close:hover { color: #333; }
 
         /* --- ESTILO RAINBOW FUNCIONAL --- */
@@ -26,16 +26,16 @@
             100% { background-position: 0% 50%; }
         }
         .rainbow-button {
-            display: inline-block; padding: 0.6rem 1rem; font-weight: bold; color: white !important;
-            border: none; border-radius: 0.375rem;
-            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee);
+            display: inline-block; padding: 0.6rem 1rem; /* Leve ajuste */ font-weight: bold; color: white !important;
+            border: none; border-radius: 0.375rem; /* rounded-md */
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); /* Cores mais vivas */
             background-size: 400% 400%;
-            animation: rainbow 5s ease infinite;
+            animation: rainbow 5s ease infinite; /* Animation */
             cursor: pointer; text-align: center; white-space: nowrap; text-decoration: none;
             transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, opacity 0.15s;
         }
         .rainbow-button:hover {
-            transform: scale(1.03); box-shadow: 0 5px 12px rgba(0,0,0,0.2); opacity: 0.95;
+            transform: scale(1.03); /* Aumenta um pouco */ box-shadow: 0 5px 12px rgba(0,0,0,0.2); opacity: 0.95;
         }
         .hero-button { padding: 0.7rem 1.4rem; }
 
@@ -46,22 +46,20 @@
         .header-logo-circle:hover { transform: scale(1.05); }
 
         /* Conteúdo Áreas */
-        .area-content { margin-top: 0.75rem; padding: 1.25rem; background-color: #F9FAFB; border-radius: 0.5rem; box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07); text-align: left; border: 1px solid #e5e7eb; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, visibility 0s linear 0.5s; max-height: 0px; overflow: hidden; opacity: 0; width: 100%; visibility: hidden; }
-        .area-content:not(.hidden) { max-height: 1500px; /* Aumentado para acomodar textos maiores */ opacity: 1; visibility: visible; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out 0.1s, visibility 0s linear 0s; }
+        .area-content { margin-top: 0.75rem; padding: 1.25rem; background-color: #F9FAFB; border-radius: 0.5rem; box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07); text-align: left; border: 1px solid #e5e7eb; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, visibility 0s linear 0.5s; max-height: 0px; /* Inicia fechado para animação */ overflow: hidden; opacity: 0; width: 100%; visibility: hidden; } /* Starts hidden */
+        .area-content:not(.hidden) { max-height: 1000px; /* Altura suficiente quando aberto */ opacity: 1; visibility: visible; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out 0.1s, visibility 0s linear 0s; } /* Ajuste na transição */
 
         .area-container { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
         @media (min-width: 640px) { .area-container { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (min-width: 1024px) { .area-container { grid-template-columns: repeat(3, minmax(0, 1fr)); } } /* 3 colunas para 8 botões (3+3+2) */
-        @media (min-width: 1280px) { .area-container { grid-template-columns: repeat(4, minmax(0, 1fr)); } } /* 4 colunas para 8 botões (4+4) */
+        /* Agora com 7 botões, ajusta para 3 ou 4 colunas em telas maiores */
+        @media (min-width: 1024px) { .area-container { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        @media (min-width: 1280px) { .area-container { grid-template-columns: repeat(4, minmax(0, 1fr)); } } /* 4 colunas em telas extra grandes */
         .area-container > div { display: flex; flex-direction: column; align-items: center; width: 100%; }
         .area-container .rainbow-button { margin-bottom: 0.5rem; width: 90%; max-width: 300px; }
         .area-content h4 { font-size: 1.125rem; font-weight: bold; margin-bottom: 0.75rem; }
         .area-content p, .area-content li { line-height: 1.5; color: #374151; font-size: 0.875rem; }
         .area-content ul { list-style: disc; padding-left: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.75rem; }
         .area-content strong { color: #1f2937; font-weight: 600; }
-        .area-content .more-info-link { color: #2563eb; text-decoration: underline; font-weight: 500; display: inline-block; margin-top: 0.75rem; transition: color 0.2s; }
-        .area-content .more-info-link:hover { color: #1d4ed8; }
-
 
         /* Modal Equipe */
         .team-member { margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
@@ -96,13 +94,12 @@
         #contactForm input[type="tel"] {
             width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #d1d5db; border-radius: 0.375rem; margin-bottom: 1rem; font-size: 0.875rem; background-color: #f9fafb;
         }
-        #contactForm input[type="checkbox"] { margin-right: 0.5rem; vertical-align: middle; } /* Alinha checkbox */
-        #contactForm .privacy-label { font-size: 0.75rem; color: #6b7280; display: inline; vertical-align: middle; } /* Alinha label */
-        #contactForm .privacy-container { margin-top: 0.5rem; margin-bottom: 1rem; } /* Ajusta espaço checkbox */
+        #contactForm input[type="checkbox"] { margin-right: 0.5rem; }
+        #contactForm .privacy-label { font-size: 0.75rem; color: #6b7280; display: inline; }
         #contactForm button[type="submit"] {
-            display: inline-block; padding: 0.7rem 1.5rem; background-color: #D4AF37; color: black; font-weight: bold; border: none; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; width: 100%;
+            display: inline-block; padding: 0.7rem 1.5rem; background-color: #D4AF37; /* Cor gold */ color: black; font-weight: bold; border: none; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; width: 100%; margin-top: 0.5rem;
         }
-        #contactForm button[type="submit"]:hover { background-color: #c8a031; transform: scale(1.02); }
+        #contactForm button[type="submit"]:hover { background-color: #c8a031; /* Tom mais escuro de gold */ transform: scale(1.02); }
         #contactForm .form-description { font-size: 0.9rem; color: #4b5563; margin-bottom: 1.5rem; text-align: center; }
 
     </style>
@@ -179,7 +176,7 @@
         </div>
     </section>
 
-    <!-- Seção Áreas de Atuação (AGORA COM 8 BOTÕES) -->
+    <!-- Seção Áreas de Atuação (AGORA COM 7 BOTÕES) -->
     <section class="py-12 px-4 bg-white">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-10 text-center rainbow-text">Áreas de Atuação</h2>
@@ -196,74 +193,35 @@
                 <div><button type="button" id="btn-medico" class="rainbow-button" onclick="toggleContent('content-medico')">Direito Médico</button><div id="content-medico" class="area-content hidden"><h4 class="rainbow-text">Direito Médico/Saúde</h4><p class="mb-2">Defesa de pacientes:</p><ul><li>Negativas Planos Saúde</li><li>Acesso a Tratamentos (TEA, etc.)</li><li>Medicamentos</li><li>Erro Médico</li><li>Direitos do Paciente</li><li>Liminares Urgentes</li></ul><p class="mt-3 text-xs text-gray-500 italic">Protegendo seu direito à saúde.</p></div></div>
                 <!-- Botão 6: Consumidor -->
                 <div><button type="button" id="btn-consumidor" class="rainbow-button" onclick="toggleContent('content-consumidor')">Direito do Consumidor</button><div id="content-consumidor" class="area-content hidden"><h4 class="rainbow-text">Direito do Consumidor</h4><p class="mb-2">Proteção nas relações de consumo:</p><ul><li>Revisão Contratos</li><li>Juros Abusivos</li><li>Busca/Apreensão Veículos</li><li>Produtos/Serviços Defeituosos</li><li>Cobrança Indevida</li><li>Negativação Indevida</li></ul><p class="mt-3 text-xs text-gray-500 italic">Seus direitos garantidos.</p></div></div>
-                <!-- Botão 7: Empresarial (CONTEÚDO ATUALIZADO) -->
+                <!-- ===== NOVO Botão 7: Empresarial ===== -->
                 <div>
                     <button type="button" id="btn-empresarial" class="rainbow-button" onclick="toggleContent('content-empresarial')">Direito Empresarial</button>
                     <div id="content-empresarial" class="area-content hidden">
                         <h4 class="rainbow-text">Direito Empresarial</h4>
-                        <p class="mb-3">O Direito Empresarial estrutura e regula as atividades de empresas e empresários. Oferecemos assessoria jurídica completa para proteger seus negócios e otimizar resultados.</p>
-
-                        <p class="font-semibold mb-1">Cobrança Judicial e Extrajudicial:</p>
-                        <p class="mb-3">Utilizamos o sistema jurídico de maneira estratégica para exercer os direitos dos credores, mantendo o respeito e a cordialidade. Atuamos na negociação e recuperação de créditos em diversos segmentos.</p>
+                        <p class="mb-2">O Direito Empresarial estrutura e regula as atividades de empresas e empresários, garantindo segurança jurídica e conformidade legal.</p>
+                        <p class="mb-3">Oferecemos assessoria jurídica completa e contamos com advogados experientes para proteger seus negócios e otimizar resultados. Nosso compromisso é auxiliar sua empresa a reduzir custos com demandas judiciais e administrativas, atuando de forma estratégica, ágil e resoluta.</p>
+                        <p class="font-semibold mb-1">Algumas áreas de atuação:</p>
                         <ul>
-                            <li>Cobrança de Dívidas Diversas</li>
-                            <li>Cobrança de Cédulas de Crédito e Títulos</li>
-                            <li>Recuperação de Créditos</li>
-                        </ul>
-
-                        <p class="font-semibold mt-3 mb-1">Auditoria Jurídica:</p>
-                        <p class="mb-3">Previna surpresas jurídicas! Nossos especialistas focam em reduzir o passivo da sua empresa de forma estratégica, ágil e eficaz, analisando contratos, contas e processos judiciais.</p>
-
-                        <p class="font-semibold mt-3 mb-1">Outros Serviços:</p>
-                         <ul>
                             <li>Elaboração e Revisão de Contratos Comerciais</li>
                             <li>Constituição e Alteração de Sociedades</li>
+                            <li>Recuperação de Créditos e Cobranças</li>
                             <li>Consultoria em Compliance e Governança</li>
                             <li>Propriedade Intelectual (Marcas e Patentes)</li>
                             <li>Resolução de Litígios Empresariais</li>
                         </ul>
-
-                        <!-- Link "Mais informações" (Substituir # pelo link real) -->
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="more-info-link">Mais informações</a>
+                        <p class="mt-3 text-xs text-gray-500 italic">Soluções jurídicas sob medida para o crescimento do seu negócio.</p>
                     </div>
                 </div>
-                 <!-- FIM Botão 7 -->
-
-                <!-- ===== NOVO Botão 8: Condominial ===== -->
-                <div>
-                    <button type="button" id="btn-condominial" class="rainbow-button" onclick="toggleContent('content-condominial')">Direito Condominial</button>
-                    <div id="content-condominial" class="area-content hidden">
-                        <h4 class="rainbow-text">Direito Condominial</h4>
-                        <p class="mb-3">Atuamos na regularização de condomínios, elaboração e revisão de regimentos internos e convenções, além de cobranças judiciais e extrajudiciais de taxas condominiais.</p>
-
-                        <p class="font-semibold mb-1">Principais Serviços:</p>
-                         <ul>
-                            <li>Assessoria completa para Síndicos e Administradoras</li>
-                            <li>Condução e assessoria em Assembleias de Condomínios</li>
-                            <li>Elaboração e Atualização de Regimento Interno e Convenção</li>
-                            <li>Mediação e Solução de Conflitos entre condôminos</li>
-                            <li>Regularização documental do Condomínio</li>
-                            <li>Cobrança de Inadimplentes</li>
-                        </ul>
-
-                        <p class="mt-4">Compreendemos a complexidade das demandas condominiais e oferecemos suporte jurídico especializado para síndicos, visando maximizar o sucesso nas questões legais e contribuir para ambientes condominiais mais eficientes e harmoniosos.</p>
-                        <p class="mt-2">Síndico, conte conosco como seu parceiro jurídico estratégico!</p>
-
-                         <!-- Link "Mais informações" (Substituir # pelo link real) -->
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="more-info-link">Mais informações</a>
-                    </div>
-                </div>
-                <!-- ===== FIM Botão 8 ===== -->
-
+                 <!-- FIM DO NOVO Botão 7 -->
             </div>
         </div>
     </section>
 
     <!-- Modais -->
     <div id="aboutModal" class="modal"><!-- Conteúdo Sobre Nós --> <div class="modal-content"><span class="close" onclick="closeModal('aboutModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2> <p class="text-gray-700 leading-relaxed text-sm">Referência em advocacia especializada, defendemos seus direitos com excelência há mais de 3 anos. Nossa equipe qualificada oferece soluções jurídicas eficientes, personalizadas e éticas, combinando tradição e inovação para os melhores resultados com abordagem estratégica e humanizada.</p> </div> </div>
-    <div id="specialtiesModal" class="modal"><!-- Conteúdo Especialidades --> <div class="modal-content"><span class="close" onclick="closeModal('specialtiesModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2> <p class="mb-6 text-gray-600 text-sm">Atuação abrangente, incluindo:</p> <div class="grid grid-cols-2 md:grid-cols-3 gap-3"> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Civil/Família</h3><ul class="list-disc pl-4 space-y-0.5"><li>Divórcio</li><li>Pensão</li><li>Contratos</li><li>Indenizações</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Trabalhista</h3><ul class="list-disc pl-4 space-y-0.5"><li>Reclamações</li><li>Defesas</li><li>Rescisão</li><li>Assédio</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Penal</h3><ul class="list-disc pl-4 space-y-0.5"><li>Defesa Criminal</li><li>Audiências/Júri</li><li>Execução</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Previdenciário</h3><ul class="list-disc pl-4 space-y-0.5"><li>BPC/Auxílios</li><li>Aposentadorias</li><li>Revisões</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Médico/Saúde</h3><ul class="list-disc pl-4 space-y-0.5"><li>Planos Saúde</li><li>Tratamentos</li><li>Erro Médico</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Consumidor</h3><ul class="list-disc pl-4 space-y-0.5"><li>Juros Abusivos</li><li>Contratos</li><li>Negativação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Extrajudicial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Inventário/Divórcio</li><li>Mediação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Empresarial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Societário</li><li>Compliance</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Condominial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Assembleias</li><li>Cobranças</li><li>Regimentos</li></ul></div> <!-- Adicionado Condominial aqui --> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Outras</h3><ul class="list-disc pl-4 space-y-0.5"><li>Consulte-nos</li></ul></div> </div></div></div>
+    <div id="specialtiesModal" class="modal"><!-- Conteúdo Especialidades --> <div class="modal-content"><span class="close" onclick="closeModal('specialtiesModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2> <p class="mb-6 text-gray-600 text-sm">Atuação abrangente, incluindo:</p> <div class="grid grid-cols-2 md:grid-cols-3 gap-3"> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Civil/Família</h3><ul class="list-disc pl-4 space-y-0.5"><li>Divórcio</li><li>Pensão</li><li>Contratos</li><li>Indenizações</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Trabalhista</h3><ul class="list-disc pl-4 space-y-0.5"><li>Reclamações</li><li>Defesas</li><li>Rescisão</li><li>Assédio</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Penal</h3><ul class="list-disc pl-4 space-y-0.5"><li>Defesa Criminal</li><li>Audiências/Júri</li><li>Execução</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Previdenciário</h3><ul class="list-disc pl-4 space-y-0.5"><li>BPC/Auxílios</li><li>Aposentadorias</li><li>Revisões</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Médico/Saúde</h3><ul class="list-disc pl-4 space-y-0.5"><li>Planos Saúde</li><li>Tratamentos</li><li>Erro Médico</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Consumidor</h3><ul class="list-disc pl-4 space-y-0.5"><li>Juros Abusivos</li><li>Contratos</li><li>Negativação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Extrajudicial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Inventário/Divórcio</li><li>Mediação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Empresarial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Societário</li><li>Compliance</li></ul></div> <!-- Adicionado Empresarial aqui também --> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Outras</h3><ul class="list-disc pl-4 space-y-0.5"><li>Consulte-nos</li></ul></div> </div></div></div>
 
-    <!-- Modal de Contato com Formulário -->
+    <!-- ===== MODAL DE CONTATO COM FORMULÁRIO ===== -->
     <div id="contactModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('contactModal')">×</span>
@@ -283,16 +241,17 @@
                     <label for="formWhatsapp">Número de WhatsApp (com DDD):</label>
                     <input type="tel" id="formWhatsapp" name="whatsapp" placeholder="Exemplo: 11912345678" required pattern="[0-9]{10,11}" title="Digite apenas números, incluindo o DDD (10 ou 11 dígitos)">
                 </div>
-                <div class="privacy-container">
+                <div class="mt-4 mb-4">
                     <input type="checkbox" id="formPrivacy" name="privacy" required>
-                    <label for="formPrivacy" class="privacy-label">De acordo com a lei 12.965/2014 e 13.709/2018, autorizo este site enviar comunicações por e-mail ou qualquer outro meio e concordo com a sua <a href="#" target="_blank" class="underline text-blue-600 hover:text-blue-800">política de privacidade</a>.</label> <!-- Substituir # pelo link real -->
+                    <label for="formPrivacy" class="privacy-label">De acordo com a lei 12.965/2014 e 13.709/2018, autorizo este site enviar comunicações por e-mail ou qualquer outro meio e concordo com a sua <a href="/politica-de-privacidade.html" target="_blank" class="underline text-blue-600 hover:text-blue-800">política de privacidade</a>.</label> <!-- Adicione link para política se tiver -->
                 </div>
                 <button type="submit">Enviar para WhatsApp</button>
             </form>
         </div>
     </div>
+    <!-- ===== FIM DO MODAL DE CONTATO COM FORMULÁRIO ===== -->
 
-    <div id="teamModal" class="modal"><!-- Conteúdo Equipe --> <div class="modal-content"><span class="close" onclick="closeModal('teamModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossa Equipe</h2> <div class="team-member"> <h3>Dr. Luiz Roberto Ribeiro Gomberg</h3> <span class="oab">OAB/SP 477.614</span> <p>Esp. em Direito Civil, Trabalhista, Penal, Militar, Constitucional, Médico, Consumidor, Previdenciário, Empresarial, Condominial. Atua em mediação, conflitos, advocacia extrajudicial, defesa executado, execuções.</p> </div> <div class="team-member"> <h3>Drª. Sara Ribeiro Gomberg</h3> <span class="oab">OAB/SP 409.398</span> <p>Esp. em Direito Civil, Direito do Trabalho e Direito Criminal.</p></div></div></div>
+    <div id="teamModal" class="modal"><!-- Conteúdo Equipe --> <div class="modal-content"><span class="close" onclick="closeModal('teamModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossa Equipe</h2> <div class="team-member"> <h3>Dr. Luiz Roberto Ribeiro Gomberg</h3> <span class="oab">OAB/SP 477.614</span> <p>Esp. em Direito Civil, Trabalhista, Penal, Militar, Constitucional, Médico, Consumidor, Previdenciário, Empresarial. Atua em mediação, conflitos, advocacia extrajudicial, defesa executado, execuções.</p> </div> <div class="team-member"> <h3>Drª. Sara Ribeiro Gomberg</h3> <span class="oab">OAB/SP 409.398</span> <p>Esp. em Direito Civil, Direito do Trabalho e Direito Criminal.</p></div></div></div>
     <div id="socialModal" class="modal"><!-- Conteúdo Redes Sociais --> <div class="modal-content"><span class="close" onclick="closeModal('socialModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Redes Sociais</h2> <div class="social-links"><a href="https://www.facebook.com/luiz.roberto.ribeiro.gomberg.67768" target="_blank" rel="noopener noreferrer" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a><a href="https://www.instagram.com/gomberg2023.adv/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a href="https://x.com/lui18179" target="_blank" rel="noopener noreferrer" class="twitter"><i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span></a></div></div></div>
 
     <!-- Footer com Links Legais -->
@@ -303,7 +262,7 @@
                  <div class="flex space-x-3 md:space-x-4"> <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="rainbow-button p-2 md:p-3 rounded-full" title="WhatsApp"><i class="fab fa-whatsapp text-base md:text-lg"></i></a> <a href="mailto:gomberg2010@hotmail.com" class="rainbow-button p-2 md:p-3 rounded-full" title="E-mail"><i class="fas fa-envelope text-base md:text-lg"></i></a></div>
              </div>
              <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400 text-xs">
-                <p>© 2025 Gomberg&Associados - Todos os direitos reservados.</p>
+                <p>© 2024 Gomberg&Associados - Todos os direitos reservados.</p>
                 <p class="mt-1">OAB/SP 477.614</p>
             </div>
 
@@ -319,18 +278,19 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- JavaScript Limpo e Funcional -->
     <script>
         function openModal(modalId) {
             const modal = document.getElementById(modalId);
             if (modal) {
+                // Fecha outros modais abertos
                 document.querySelectorAll(".modal").forEach(otherModal => {
                     if (otherModal.style.display === "block" && otherModal.id !== modalId) {
                         closeModal(otherModal.id);
                     }
                 });
                 modal.style.display = "block";
-                document.body.style.overflow = "hidden";
+                document.body.style.overflow = "hidden"; // Impede scroll do body
             } else {
                 console.error("Modal not found:", modalId);
             }
@@ -340,12 +300,14 @@
             const modal = document.getElementById(modalId);
             if (modal) {
                 modal.style.display = "none";
+                // Restaura scroll do body apenas se nenhum outro modal estiver aberto
                 if (!document.querySelector('.modal[style*="display: block"]')) {
                     document.body.style.overflow = "auto";
                 }
             }
         }
 
+        // Fecha modal clicando fora
         window.addEventListener("click", function(event) {
             document.querySelectorAll(".modal").forEach(modal => {
                 if (event.target == modal) {
@@ -354,6 +316,7 @@
             });
         });
 
+        // Fecha modal com tecla ESC
         window.addEventListener("keydown", function(event) {
             if (event.key === "Escape") {
                 document.querySelectorAll('.modal[style*="display: block"]').forEach(modal => {
@@ -375,11 +338,13 @@
             const contentElement = document.getElementById(contentId);
             if (contentElement) {
                 const isHidden = contentElement.classList.contains("hidden");
+                // Fecha todos os outros conteúdos abertos nesta seção
                 document.querySelectorAll(".area-container .area-content").forEach(otherContent => {
                     if (otherContent.id !== contentId) {
                         otherContent.classList.add("hidden");
                     }
                 });
+                // Abre ou fecha o conteúdo clicado
                 if (isHidden) {
                     contentElement.classList.remove("hidden");
                 } else {
@@ -390,10 +355,12 @@
             }
         }
 
+        // ===== LÓGICA DO FORMULÁRIO DE CONTATO =====
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
             contactForm.addEventListener('submit', function(event) {
-                event.preventDefault();
+                event.preventDefault(); // Impede o envio padrão do formulário
+
                 const name = document.getElementById('formName').value;
                 const email = document.getElementById('formEmail').value;
                 const whatsapp = document.getElementById('formWhatsapp').value;
@@ -401,20 +368,33 @@
 
                 if (!privacy) {
                     alert('Você precisa concordar com a política de privacidade para continuar.');
-                    return;
+                    return; // Interrompe se a privacidade não for aceita
                 }
 
-                const targetWhatsapp = "5511973383818";
+                // Número de WhatsApp de destino (REMOVER caracteres não numéricos se houver)
+                const targetWhatsapp = "5511973383818"; // Inclui código do país (55)
+
+                // Monta a mensagem pré-preenchida
                 const message = `Olá! Gostaria de um contato.\n\nNome: ${name}\nEmail: ${email}\nMeu WhatsApp: ${whatsapp}`;
+
+                // Codifica a mensagem para URL
                 const encodedMessage = encodeURIComponent(message);
+
+                // Cria a URL do WhatsApp
                 const whatsappUrl = `https://wa.me/${targetWhatsapp}?text=${encodedMessage}`;
+
+                // Redireciona para o WhatsApp
                 window.open(whatsappUrl, '_blank');
-                closeModal('contactModal');
-                // contactForm.reset(); // Descomente para limpar o formulário
+
+                // Opcional: Limpar formulário após envio ou fechar modal
+                 closeModal('contactModal');
+                // contactForm.reset(); // Limpa os campos
             });
         } else {
             console.error("Formulário de contato (contactForm) não encontrado.");
         }
+        // ===== FIM DA LÓGICA DO FORMULÁRIO =====
+
 
         document.addEventListener("DOMContentLoaded", () => console.log("Page Ready."));
     </script>
