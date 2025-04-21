@@ -6,622 +6,185 @@
     <title>Gomberg&Associados - Escritório de Advocacia</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos CSS Corrigidos -->
     <style>
-        .gold-bg {
-            background-color: #D4AF37;
-        }
-        .specialty-card {
-            transition: all 0.3s ease;
-        }
-        .specialty-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 100;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover {
-            color: black;
-        }
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .file-actions {
-            display: flex;
-            gap: 10px;
-        }
-        #fileList {
-            max-height: 300px;
-            overflow-y: auto;
+        /* Estilos Base */
+        html { scroll-behavior: smooth; }
+        body { font-family: sans-serif; }
+        .gold-bg { background-color: #D4AF37; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); /* Efeito blur opcional */ }
+        .modal-content { background-color: #fefefe; margin: 7% auto; padding: 25px 30px 30px 30px; border: none; width: 90%; max-width: 700px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; /* Aumenta área de clique */ }
+        .close:hover { color: #333; }
+
+        /* --- ESTILO RAINBOW FUNCIONAL --- */
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         .rainbow-button {
-            background: linear-gradient(45deg, #FF0000, #FF8C00, #FFD700, #008000, #0000FF, #4B0082, #EE82EE);
-            color: white;
-            font-weight: bold;
-            border: none;
-            animation: rainbow 5s linear infinite;
-            background-size: 600% 600%;
+            display: inline-block; padding: 0.6rem 1rem; /* Leve ajuste */ font-weight: bold; color: white !important;
+            border: none; border-radius: 0.375rem; /* rounded-md */
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); /* Cores mais vivas */
+            background-size: 400% 400%;
+            animation: rainbow 5s ease infinite; /* Animation */
+            cursor: pointer; text-align: center; white-space: nowrap; text-decoration: none;
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, opacity 0.15s;
         }
-        .rainbow-text {
-            background: linear-gradient(45deg, #FF0000, #FF8C00, #FFD700, #008000, #0000FF, #4B0082, #EE82EE);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            font-weight: bold;
-            animation: rainbow 5s linear infinite;
-            background-size: 600% 600%;
+        .rainbow-button:hover {
+            transform: scale(1.03); /* Aumenta um pouco */ box-shadow: 0 5px 12px rgba(0,0,0,0.2); opacity: 0.95;
         }
-        .black-button {
-            background-color: black;
-            color: white;
-            font-weight: bold;
-            border: none;
-        }
-        .black-button-rainbow-text {
-            background-color: black;
-            border: none;
-        }
-        @keyframes rainbow {
-            0% {background-position: 0% 50%;}
-            50% {background-position: 100% 50%;}
-            100% {background-position: 0% 50%;}
-        }
-        .article-content {
-            display: none;
-        }
+        .hero-button { padding: 0.7rem 1.4rem; }
+
+        .rainbow-text { background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; animation: rainbow 5s ease infinite; background-size: 400% 400%; }
+
+        /* Botão Redesignação */
+        .black-button-rainbow-text { display: inline-block; padding: 0.6rem 1rem; background-color: black; border: none; border-radius: 0.375rem; transition: opacity 0.2s ease-out, transform 0.2s ease-out, box-shadow 0.2s ease-out; cursor: pointer; vertical-align: middle; text-decoration: none; }
+        .black-button-rainbow-text:hover { opacity: 0.9; transform: scale(1.03); box-shadow: 0 5px 12px rgba(0,0,0,0.2); }
+        .black-button-rainbow-text .rainbow-text { display: inline; color: transparent !important; vertical-align: middle; font-weight: bold; }
+
+        /* Efeito Hover Logo */
+        .header-logo-circle { transition: transform 0.2s ease-out; cursor: default; }
+        .header-logo-circle:hover { transform: scale(1.05); }
+
+        /* Conteúdo Áreas */
+        .area-content { margin-top: 0.75rem; padding: 1.25rem; background-color: #F9FAFB; border-radius: 0.5rem; box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07); text-align: left; border: 1px solid #e5e7eb; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, visibility 0s linear 0.5s; max-height: 0px; /* Inicia fechado para animação */ overflow: hidden; opacity: 0; width: 100%; visibility: hidden; } /* Starts hidden */
+        .area-content:not(.hidden) { max-height: 1000px; /* Altura suficiente quando aberto */ opacity: 1; visibility: visible; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out 0.1s, visibility 0s linear 0s; } /* Ajuste na transição */
+
+        .area-container { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
+        @media (min-width: 640px) { .area-container { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .area-container { grid-template-columns: repeat(3, minmax(0, 1fr)); } } /* 7 botões = 3 + 3 + 1 */
+        .area-container > div { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .area-container .rainbow-button { margin-bottom: 0.5rem; width: 90%; max-width: 300px; /* Um pouco mais largo */ }
+        .area-content h4 { font-size: 1.125rem; font-weight: bold; margin-bottom: 0.75rem; }
+        .area-content p, .area-content li { line-height: 1.5; color: #374151; font-size: 0.875rem; }
+        .area-content ul { list-style: disc; padding-left: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.75rem; }
+        .area-content strong { color: #1f2937; font-weight: 600; }
+
+        /* Modal Equipe */
+        .team-member { margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .team-member:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .team-member h3 { font-size: 1.05rem; font-weight: bold; color: #1f2937; margin-bottom: 0.25rem; }
+        .team-member .oab { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.4rem; display: block; }
+        .team-member p { font-size: 0.85rem; color: #4b5563; line-height: 1.5; }
+
+        /* Modal Redes Sociais */
+        .social-links a { display: flex; align-items: center; padding: 0.7rem 1rem; margin-bottom: 0.6rem; border-radius: 0.375rem; background-color: #f3f4f6; transition: background-color 0.2s ease-out, transform 0.2s ease-out; text-decoration: none; color: #374151; font-weight: 500; }
+        .social-links a:hover { background-color: #e5e7eb; transform: translateX(4px); }
+        .social-links i { font-size: 1.3rem; margin-right: 0.8rem; width: 25px; text-align: center; }
+        .social-links a.facebook i { color: #1877F2; } .social-links a.instagram i { color: #E4405F; } .social-links a.twitter i { color: #000000; }
+
     </style>
 </head>
 <body class="gold-bg text-black font-sans">
-    <!-- Header -->
+    <!-- Header Limpo -->
     <header class="gold-bg shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center mr-4">
-                    <span class="text-white font-bold text-xl">G&A</span>
+        <div class="container mx-auto px-4 py-2.5 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center flex-shrink-0 mr-4"> <!-- Adicionado margin-right -->
+                <div class="header-logo-circle w-10 h-10 md:w-12 md:h-12 bg-black rounded-full flex items-center justify-center mr-2 md:mr-3">
+                    <span class="text-white font-bold text-lg md:text-xl">G&A</span>
                 </div>
-                <h1 class="text-2xl font-bold">Gomberg&Associados</h1>
+                <h1 class="text-lg sm:text-xl md:text-2xl font-bold whitespace-nowrap">Gomberg&Associados</h1>
             </div>
-            <nav class="hidden md:flex space-x-8">
-                <button onclick="openModal('aboutModal')" class="rainbow-button px-4 py-2 rounded-lg hover:opacity-90 transition">Sobre Nós</button>
-                <button onclick="openModal('specialtiesModal')" class="rainbow-button px-4 py-2 rounded-lg hover:opacity-90 transition">Nossas Especialidades</button>
-                <button onclick="openModal('contactModal')" class="rainbow-button px-4 py-2 rounded-lg hover:opacity-90 transition">Nossos Contatos</button>
-                <button onclick="openModal('documentsModal')" class="rainbow-button px-4 py-2 rounded-lg hover:opacity-90 transition">Documentos</button>
-                <button onclick="openModal('civilModal')" class="rainbow-button px-4 py-2 rounded-lg hover:opacity-90 transition">Direito Civil</button>
-                <button onclick="openModal('genderModal')" class="black-button-rainbow-text px-4 py-2 rounded-lg hover:opacity-90 transition">
-                    <span class="rainbow-text">Redesignação Sexual</span>
-                </button>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden lg:flex flex-nowrap items-center space-x-2 xl:space-x-3"> <!-- flex-nowrap -->
+                 <button type="button" onclick="openModal('aboutModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Sobre Nós</button>
+                 <button type="button" onclick="openModal('specialtiesModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Especialidades</button>
+                 <button type="button" onclick="openModal('socialModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Redes Sociais</button>
+                 <button type="button" onclick="openModal('contactModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Contatos</button>
+                 <button type="button" onclick="openModal('teamModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Nossa Equipe</button>
+                 <button type="button" onclick="openModal('genderModal')" class="black-button-rainbow-text text-xs xl:text-sm flex-shrink-0">
+                     <span class="rainbow-text">Redesignação</span>
+                 </button>
             </nav>
-            <button class="md:hidden text-2xl rainbow-button p-2 rounded-lg" onclick="toggleMobileMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
+
+            <!-- Botão Menu Mobile -->
+            <button type="button" class="lg:hidden text-xl rainbow-button p-1.5" onclick="toggleMobileMenu()"> <i class="fas fa-bars"></i> </button>
         </div>
-                
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="md:hidden hidden gold-bg px-4 pb-4">
-            <button onclick="openModal('aboutModal')" class="rainbow-button block w-full text-left py-2 px-4 rounded-lg my-1">Sobre Nós</button>
-            <button onclick="openModal('specialtiesModal')" class="rainbow-button block w-full text-left py-2 px-4 rounded-lg my-1">Nossas Especialidades</button>
-            <button onclick="openModal('contactModal')" class="rainbow-button block w-full text-left py-2 px-4 rounded-lg my-1">Nossos Contatos</button>
-            <button onclick="openModal('documentsModal')" class="rainbow-button block w-full text-left py-2 px-4 rounded-lg my-1">Documentos</button>
-            <button onclick="openModal('civilModal')" class="rainbow-button block w-full text-left py-2 px-4 rounded-lg my-1">Direito Civil</button>
-            <button onclick="openModal('genderModal')" class="black-button-rainbow-text block w-full text-left py-2 px-4 rounded-lg my-1">
-                <span class="rainbow-text">Redesignação Sexual</span>
-            </button>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="lg:hidden hidden gold-bg px-4 pb-4 absolute w-full shadow-lg z-40 border-t border-black/10">
+             <button type="button" onclick="openModal('aboutModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Sobre Nós</button>
+             <button type="button" onclick="openModal('specialtiesModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Especialidades</button>
+             <button type="button" onclick="openModal('socialModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Redes Sociais</button>
+             <button type="button" onclick="openModal('contactModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Contatos</button>
+             <button type="button" onclick="openModal('teamModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Nossa Equipe</button>
+             <button type="button" onclick="openModal('genderModal'); toggleMobileMenu();" class="black-button-rainbow-text block w-full text-left my-1 text-sm"> <span class="rainbow-text">Redesignação</span> </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="py-16 px-4">
-        <div class="container mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 rainbow-text">Excelência Jurídica ao Seu Alcance</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto">Defendendo seus direitos com expertise e comprometimento.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="openModal('contactModal')" class="rainbow-button px-6 py-3 rounded-lg font-bold hover:opacity-90 transition">
-                    Fale Conosco
-                </button>
-                <button onclick="openModal('specialtiesModal')" class="rainbow-button px-6 py-3 rounded-lg font-bold hover:opacity-90 transition">
-                    Nossas Especialidades
-                </button>
+    <!-- Hero Section com Imagem - HTML Limpo e Corrigido -->
+    <section class="py-10 md:py-12 px-4 gold-bg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+            <div class="text-center md:text-left md:w-1/2 lg:w-3/5 order-2 md:order-1">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-black">
+                    <span class="rainbow-text">Excelência Jurídica</span> <span class="block sm:inline">ao Seu Alcance</span>
+                </h2>
+                <p class="text-base lg:text-lg mb-6 text-gray-900">Defendendo seus direitos com expertise e comprometimento.</p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                     <button type="button" onclick="openModal('contactModal')" class="rainbow-button hero-button font-bold">Fale Conosco</button>
+                     <button type="button" onclick="openModal('specialtiesModal')" class="rainbow-button hero-button font-bold">Especialidades</button>
+                </div>
+            </div>
+            <div class="md:w-1/2 lg:w-2/5 flex justify-center order-1 md:order-2 mb-6 md:mb-0">
+                 <!-- ** TAG IMG CORRIGIDA ** Lembre de ajustar o src -->
+                <img src="advogado-cartoon.png"
+                     alt="Ilustração Advogado Gomberg & Associados"
+                     class="max-w-[250px] sm:max-w-[300px] lg:max-w-[280px] xl:max-w-[320px] h-auto rounded-lg shadow-xl object-contain"
+                     onerror="this.style.display='none'; console.warn('Imagem não encontrada em: ' + this.src)">
             </div>
         </div>
     </section>
 
-    <!-- Blog Preview -->
+    <!-- Seção Áreas de Atuação (7 Botões) -->
     <section class="py-12 px-4 bg-white">
         <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-8 text-center rainbow-text">Áreas de Atuação</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Article 1 - Direito Civil -->
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-                    <div class="h-48 bg-gray-300"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Direito Civil</h3>
-                        <p class="text-gray-600 mb-4">Atuamos em todas as questões do Direito Civil com expertise e comprometimento.</p>
-                        <a href="#" onclick="toggleArticle('civilArticle')" class="rainbow-text hover:underline">Ler mais</a>
-                        <div id="civilArticle" class="article-content mt-4">
-                            <!-- Content will be added dynamically -->
-                        </div>
-                    </div>
-                </div>
-                                
-                <!-- Article 2 - Direito Trabalhista -->
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-                    <div class="h-48 bg-gray-300"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Direito Trabalhista</h3>
-                        <p class="text-gray-600 mb-4">Saiba como proceder em casos de rescisão indireta e demissão sem justa causa.</p>
-                        <a href="#" onclick="toggleArticle('laborArticle')" class="rainbow-text hover:underline">Ler mais</a>
-                        <div id="laborArticle" class="article-content mt-4">
-                            <!-- Content will be added dynamically -->
-                        </div>
-                    </div>
-                </div>
-                                
-                <!-- Article 3 - Processo Criminal -->
-                <div class="bg-gray-50 rounded-lg overflow-hidden shadow-lg">
-                    <div class="h-48 bg-gray-300"></div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold mb-2">Processo Criminal</h3>
-                        <p class="text-gray-600 mb-4">Orientações essenciais para acompanhamento em delegacias e audiências criminais.</p>
-                        <a href="#" onclick="toggleArticle('criminalArticle')" class="rainbow-text hover:underline">Ler mais</a>
-                        <div id="criminalArticle" class="article-content mt-4">
-                            <!-- Content will be added dynamically -->
-                        </div>
-                    </div>
-                </div>
+            <h2 class="text-3xl font-bold mb-10 text-center rainbow-text">Áreas de Atuação</h2>
+            <div class="area-container mt-8">
+                <!-- Botões existentes -->
+                <div><button type="button" id="btn-civil" class="rainbow-button" onclick="toggleContent('content-civil')">Direito Civil</button><div id="content-civil" class="area-content hidden"><h4 class="rainbow-text">Direito Civil</h4><p class="mb-2">Expertise em Família e Cível:</p><ul><li>Divórcio/Partilha</li><li>União Estável</li><li>Pensão Alimentícia</li><li>Guarda/Visitas</li><li>Contratos</li><li>Indenizações</li><li>Imobiliário</li></ul><p class="mt-3 text-xs text-gray-500 italic">Soluções jurídicas personalizadas.</p></div></div>
+                <div><button type="button" id="btn-trabalhista" class="rainbow-button" onclick="toggleContent('content-trabalhista')">Direito Trabalhista</button><div id="content-trabalhista" class="area-content hidden"><h4 class="rainbow-text">Direito Trabalhista</h4><p class="font-semibold mb-3">Defesa de direitos na relação de trabalho:</p><ul><li><strong>Rescisão Indireta:</strong> Quando a falta grave é do empregador.</li><li><strong>Assédio Moral/Sexual:</strong> Combate e reparação.</li><li><strong>Verbas Rescisórias:</strong> Cálculo e cobrança.</li><li>Horas Extras, Adicionais</li><li>Acidente de Trabalho</li></ul><p class="mt-4 text-xs italic text-gray-600">Protegendo seus direitos trabalhistas.</p></div></div>
+                <div><button type="button" id="btn-penal" class="rainbow-button" onclick="toggleContent('content-penal')">Direito Penal</button><div id="content-penal" class="area-content hidden"><h4 class="rainbow-text">Direito Penal</h4><p class="mb-2">Atuação em todas as fases:</p><ul><li>Acompanhamento em Delegacia</li><li>Audiências</li><li>ANPP</li><li>Liberdade/HC</li><li>Execução Penal</li><li>Tribunal do Júri</li><li>Assistência à Acusação</li></ul><p class="mt-3 text-xs text-gray-500 italic">Defesa técnica especializada.</p></div></div>
+                <div><button type="button" id="btn-previdenciario" class="rainbow-button" onclick="toggleContent('content-previdenciario')">Direito Previdenciário</button><div id="content-previdenciario" class="area-content hidden"><h4 class="rainbow-text">Direito Previdenciário</h4><p class="mb-2">Seu benefício INSS:</p><ul><li>BPC/LOAS</li><li>Auxílios Incapacidade</li><li>Aposentadorias</li><li>Pensão por Morte</li><li>Acidente de Trabalho</li><li>Revisões/Recursos</li></ul><p class="mt-3 text-xs text-gray-500 italic">Assessoria completa.</p></div></div>
+                <div><button type="button" id="btn-medico" class="rainbow-button" onclick="toggleContent('content-medico')">Direito Médico</button><div id="content-medico" class="area-content hidden"><h4 class="rainbow-text">Direito Médico/Saúde</h4><p class="mb-2">Defesa de pacientes:</p><ul><li>Negativas Planos Saúde</li><li>Acesso a Tratamentos (TEA, etc.)</li><li>Medicamentos</li><li>Erro Médico</li><li>Direitos do Paciente</li><li>Liminares Urgentes</li></ul><p class="mt-3 text-xs text-gray-500 italic">Protegendo seu direito à saúde.</p></div></div>
+                <div><button type="button" id="btn-consumidor" class="rainbow-button" onclick="toggleContent('content-consumidor')">Direito do Consumidor</button><div id="content-consumidor" class="area-content hidden"><h4 class="rainbow-text">Direito do Consumidor</h4><p class="mb-2">Proteção nas relações de consumo:</p><ul><li>Revisão Contratos</li><li>Juros Abusivos</li><li>Busca/Apreensão Veículos</li><li>Produtos/Serviços Defeituosos</li><li>Cobrança Indevida</li><li>Negativação Indevida</li></ul><p class="mt-3 text-xs text-gray-500 italic">Seus direitos garantidos.</p></div></div>
+                 <!-- NOVO: Advocacia Extrajudicial -->
+                <div><button type="button" id="btn-extrajudicial" class="rainbow-button" onclick="toggleContent('content-extrajudicial')">Advocacia Extrajudicial</button><div id="content-extrajudicial" class="area-content hidden"><h4 class="rainbow-text">Advocacia Extrajudicial</h4><p class="mb-2">Soluções fora do processo judicial:</p><ul><li>Elaboração e Revisão de Contratos (Locação, Compra/Venda, Comodato, Doação, Serviços, etc.)</li><li>Notificações Extrajudiciais (cobrança, obrigações)</li><li>Acordos e Transações</li><li>Mediação e Conciliação de Conflitos</li><li>Inventário Extrajudicial (em cartório)</li><li>Divórcio Extrajudicial (consensual, sem filhos menores/incapazes)</li><li>Usucapião Extrajudicial</li><li>Pareceres Jurídicos</li></ul><p class="mt-3 text-xs text-gray-500 italic">Agilidade e menor custo na resolução.</p></div></div>
             </div>
         </div>
     </section>
 
-    <!-- About Modal -->
-    <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('aboutModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2>
-            <p class="mb-4">O escritório Gomberg&Associados é referência em advocacia especializada, atuando com excelência na defesa dos direitos de nossos clientes há mais de três anos.</p>
-            <p>Nossa equipe é composta por professionals altamente qualificados e comprometidos em oferecer soluções jurídicas eficientes, personalizadas e éticas para cada caso. Combinando tradição e inovação, buscamos sempre os melhores resultados através de uma abordagem estratégica e humanizada.</p>
-        </div>
-    </div>
+    <!-- Modais (código omitido para brevidade, igual versão anterior exceto o teamModal) -->
+    <div id="aboutModal" class="modal"><!-- Conteúdo Sobre Nós --> <div class="modal-content"><span class="close" onclick="closeModal('aboutModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2> <p class="text-gray-700 leading-relaxed text-sm">Referência em advocacia especializada, defendemos seus direitos com excelência há mais de 3 anos. Nossa equipe qualificada oferece soluções jurídicas eficientes, personalizadas e éticas, combinando tradição e inovação para os melhores resultados com abordagem estratégica e humanizada.</p> </div> </div>
+    <div id="specialtiesModal" class="modal"><!-- Conteúdo Especialidades --> <div class="modal-content"><span class="close" onclick="closeModal('specialtiesModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2> <p class="mb-6 text-gray-600 text-sm">Atuação abrangente, incluindo:</p> <div class="grid grid-cols-2 md:grid-cols-3 gap-3"> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Civil/Família</h3><ul class="list-disc pl-4 space-y-0.5"><li>Divórcio</li><li>Pensão</li><li>Contratos</li><li>Indenizações</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Trabalhista</h3><ul class="list-disc pl-4 space-y-0.5"><li>Reclamações</li><li>Defesas</li><li>Rescisão</li><li>Assédio</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Penal</h3><ul class="list-disc pl-4 space-y-0.5"><li>Defesa Criminal</li><li>Audiências/Júri</li><li>Execução</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Previdenciário</h3><ul class="list-disc pl-4 space-y-0.5"><li>BPC/Auxílios</li><li>Aposentadorias</li><li>Revisões</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Médico/Saúde</h3><ul class="list-disc pl-4 space-y-0.5"><li>Planos Saúde</li><li>Tratamentos</li><li>Erro Médico</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Consumidor</h3><ul class="list-disc pl-4 space-y-0.5"><li>Juros Abusivos</li><li>Contratos</li><li>Negativação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Extrajudicial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Inventário/Divórcio</li><li>Mediação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Outras</h3><ul class="list-disc pl-4 space-y-0.5"><li>Redesignação</li></ul></div> </div></div></div>
+    <div id="contactModal" class="modal"><!-- Conteúdo Contato --> <div class="modal-content"><span class="close" onclick="closeModal('contactModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossos Contatos</h2> <div class="space-y-4"> <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"> <div class="rainbow-button p-3 rounded-full mr-4 flex-shrink-0 group-hover:opacity-90"><i class="fab fa-whatsapp text-xl"></i></div> <div><p class="font-medium text-sm">WhatsApp</p><p class="rainbow-text group-hover:underline block break-words text-xs">(11) 97338-3818</p></div></a> <a href="mailto:gomberg2010@hotmail.com" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"> <div class="rainbow-button p-3 rounded-full mr-4 flex-shrink-0 group-hover:opacity-90"><i class="fas fa-envelope text-xl"></i></div> <div><p class="font-medium text-sm">E-mail</p><p class="rainbow-text group-hover:underline block break-words text-xs">gomberg2010@hotmail.com</p></div></a> <div class="pt-4 border-t mt-4"><p class="font-medium mb-1 text-sm">Horário Atendimento</p><p class="text-xs text-gray-700">Seg-Sex: 9h-18h / Sáb: 9h-12h (agendado)</p></div></div></div></div>
+    <div id="genderModal" class="modal"><!-- Conteúdo Redesignação --> <div class="modal-content"><span class="close" onclick="closeModal('genderModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Redesignação Sexual</h2> <div class="mb-4 space-y-3 text-sm text-gray-700 leading-relaxed"><p>Auxiliamos em procedimentos de confirmação de gênero.</p><p class="font-semibold text-blue-700">SUS/Planos devem cobrir; negativas podem ser revertidas.</p><p>Busque orientação jurídica especializada para garantir seus direitos (cobertura, indenização).</p><div class="bg-blue-100 p-3 rounded-lg border border-blue-200 mt-2"><h3 class="font-bold text-blue-800 mb-1 text-sm">Importante:</h3><ul class="list-disc pl-5 space-y-1 text-xs text-blue-700"><li>Negativas contestáveis judicialmente.</li><li>Ações comumente resultam em êxito.</li><li>Indenização por danos morais é cabível.</li></ul></div><div class="mt-4 text-center"><a href="https://cirurgia-de-redesignacao-vlw4jlp.gamma.site/" target="_blank" rel="noopener noreferrer" class="black-button-rainbow-text inline-block px-6 py-2 rounded-lg font-bold border-2 border-black hover:opacity-90"><span class="rainbow-text">Saiba mais</span></a></div></div></div></div>
+    <div id="teamModal" class="modal"><!-- Conteúdo Equipe --> <div class="modal-content"><span class="close" onclick="closeModal('teamModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossa Equipe</h2> <div class="team-member"> <h3>Dr. Luiz Roberto Ribeiro Gomberg</h3> <span class="oab">OAB/SP 477.614</span> <p>Esp. em Direito Civil, Trabalhista, Penal, Militar, Constitucional, Médico, Consumidor, Previdenciário. Atua em mediação, conflitos, advocacia extrajudicial, defesa executado, execuções.</p> </div> <div class="team-member"> <h3>Drª. Sara Ribeiro Gomberg</h3> <span class="oab">OAB/SP 409.398</span> <p>Esp. em Direito Civil, Direito do Trabalho e Direito Criminal.</p></div></div></div>
+    <div id="socialModal" class="modal"><!-- Conteúdo Redes Sociais --> <div class="modal-content"><span class="close" onclick="closeModal('socialModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Redes Sociais</h2> <div class="social-links"><a href="https://www.facebook.com/luiz.roberto.ribeiro.gomberg.67768" target="_blank" rel="noopener noreferrer" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a><a href="https://www.instagram.com/gomberg2023.adv/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a href="https://x.com/lui18179" target="_blank" rel="noopener noreferrer" class="twitter"><i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span></a></div></div></div>
 
-    <!-- Specialties Modal -->
-    <div id="specialtiesModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('specialtiesModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2>
-                        
-            <div class="grid gap-6">
-                <!-- Direito Civil -->
-                <div class="specialty-card bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 rainbow-text">Direito Civil</h3>
-                    <p class="text-gray-700">Atuamos em todas as questões do Direito Civil com expertise e comprometimento:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                        <li>Divórcio e separação consensual ou litigiosa</li>
-                        <li>Partilha de bens</li>
-                        <li>Reconhecimento e dissolução de união estável</li>
-                        <li>Pensão alimentícia</li>
-                        <li>Guarda de menores</li>
-                        <li>Regulamentação de visitas</li>
-                        <li>Defesa do executado</li>
-                        <li>Cobranças judiciais e extrajudiciais</li>
-                    </ul>
-                </div>
-                                
-                <!-- Direito Trabalhista -->
-                <div class="specialty-card bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 rainbow-text">Direito Trabalhista</h3>
-                    <p class="text-gray-700">Defesa dos direitos trabalhistas de empregados e empregadores:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                        <li>Rescisão indireta do contrato de trabalho</li>
-                        <li>Dispensa sem justa causa</li>
-                        <li>Reclamações trabalhistas</li>
-                        <li>Defesas em ações trabalhistas</li>
-                        <li>Assessoramento em negociações coletivas</li>
-                        <li>Orientação sobre direitos e deveres trabalhistas</li>
-                    </ul>
-                </div>
-                                
-                <!-- Direito Criminal -->
-                <div class="specialty-card bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-bold mb-3 rainbow-text">Direito Criminal</h3>
-                    <p class="text-gray-700">Atuação estratégica em todas as fases do processo penal:</p>
-                    <ul class="list-disc pl-5 mt-2 space-y-1">
-                        <li>Acompanhamento em delegacias e flagrantes</li>
-                        <li>Defesa em audiências criminais</li>
-                        <li>Habeas corpus e medidas cautelares</li>
-                        <li>Recursos criminais</li>
-                        <li>Assessoria a vítimas de crimes</li>
-                        <li>Processos de execução penal</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Civil Modal -->
-    <div id="civilModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('civilModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 rainbow-text">Direito Civil</h2>
-                        
-            <div class="specialty-card bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-xl font-bold mb-3 rainbow-text">Atuamos no Direito da Família nas seguintes especialidades:</h3>
-                <ul class="list-disc pl-5 mt-2 space-y-2">
-                    <li class="font-medium">Divórcio</li>
-                    <li class="font-medium">Partilha de bens</li>
-                    <li class="font-medium">Reconhecimento e dissolução de união estável</li>
-                    <li class="font-medium">Pensão alimentícia</li>
-                    <li class="font-medium">Guarda de menores</li>
-                    <li class="font-medium">Regulamentação de visitas</li>
-                    <li class="font-medium">Defesa do executado</li>
-                    <li class="font-medium">Cobranças judiciais e extrajudiciais</li>
-                </ul>
-                <p class="mt-4 text-gray-700">Nossa equipe está preparada para oferecer a melhor assessoria jurídica em todas essas áreas, garantindo seus direitos com excelência e comprometimento.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Contact Modal -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('contactModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossos Contatos</h2>
-                        
-            <div class="space-y-4">
-                <div class="flex items-center">
-                    <div class="rainbow-button p-3 rounded-full mr-4">
-                        <i class="fab fa-whatsapp text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="font-medium">WhatsApp</p>
-                        <a href="https://wa.me/5511973383818" class="rainbow-text hover:underline">(11) 97338-3818</a>
-                    </div>
-                </div>
-                                
-                <div class="flex items-center">
-                    <div class="rainbow-button p-3 rounded-full mr-4">
-                        <i class="fas fa-envelope text-xl"></i>
-                    </div>
-                    <div>
-                        <p class="font-medium">E-mail</p>
-                        <a href="mailto:gombergeassociados@gmail.com" class="rainbow-text hover:underline">gombergeassociados@gmail.com</a>
-                    </div>
-                </div>
-                                
-                <div class="pt-4">
-                    <p class="font-medium mb-2">Horário de Atendimento</p>
-                    <p>Segunda a Sexta: 9h às 18h</p>
-                    <p>Sábado: 9h às 12h (com agendamento prévio)</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Documents Modal -->
-    <div id="documentsModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('documentsModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-6 rainbow-text">Documentos Correlatos</h2>
-                        
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Enviar novo documento</label>
-                <div class="flex flex-col space-y-4">
-                    <div class="flex">
-                        <input type="text" id="fileName" placeholder="Nome do documento" class="flex-grow px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black">
-                    </div>
-                    <div class="flex">
-                        <input type="file" id="fileInput" class="hidden" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx">
-                        <button onclick="document.getElementById('fileInput').click()" class="rainbow-button px-4 py-2 border rounded-lg hover:opacity-90 w-full">
-                            <i class="fas fa-paperclip mr-2"></i>Selecionar Arquivo
-                        </button>
-                    </div>
-                    <div>
-                        <select id="articleCategory" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black">
-                            <option value="">Selecione o artigo relacionado</option>
-                            <option value="civilArticle">Direito Civil</option>
-                            <option value="laborArticle">Direito Trabalhista</option>
-                            <option value="criminalArticle">Processo Criminal</option>
-                        </select>
-                    </div>
-                    <div class="flex justify-end">
-                        <button onclick="uploadFile()" class="rainbow-button px-6 py-2 rounded-lg font-bold hover:opacity-90">Enviar</button>
-                    </div>
-                </div>
-            </div>
-                        
-            <div id="fileList" class="border rounded-lg p-4">
-                <h3 class="font-bold mb-4 rainbow-text">Documentos disponíveis</h3>
-                <div id="fileItems">
-                    <!-- Files will be listed here -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Gender Reassignment Modal -->
-    <div id="genderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('genderModal')">&times;</span>
-            <h2 class="text-2xl font-bold mb-4 rainbow-text">Redesignação Sexual</h2>
-                        
-            <div class="mb-4">
-                <p class="mb-4">A redesignação sexual, também conhecida como cirurgia de confirmação de gênero, é um procedimento médico que ajuda pessoas transgênero a alinhar suas características físicas com sua identidade de gênero.</p>
-                                
-                <p class="mb-4 font-semibold">No Brasil, o SUS (Sistema Único de Saúde) e os planos de saúde são obrigados por lei a cobrir esses procedimentos. No entanto, muitas vezes os planos de saúde negam a cobertura indevidamente.</p>
-                                
-                <p class="mb-4">Se você enfrentou negativa do plano de saúde para procedimentos de redesignação sexual, procure orientação de um advogado de sua confiança. Você tem direitos que podem ser exigidos judicialmente.</p>
-                                
-                <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                    <h3 class="font-bold text-blue-800 mb-2">Informações importantes:</h3>
-                    <p class="mb-2">• A negativa do plano de saúde pode ser combatida judicialmente</p>
-                    <p class="mb-2">• Processos judiciais para garantir a cobertura têm alto índice de sucesso</p>
-                    <p class="mb-2">• Você pode tem direito a indenização por danos morais</p>
-                </div>
-                                
-                <div class="mt-6 text-center">
-                    <a href="https://cirurgia-de-redesignacao-vlw4jlp.gamma.site/" target="_blank" class="black-button-rainbow-text inline-block px-6 py-3 rounded-lg font-bold hover:opacity-90 transition border-2 border-black">
-                        <span class="rainbow-text">Saiba mais sobre redesignação sexual</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white py-8 px-4">
+    <!-- Footer Limpo e Corrigido -->
+    <footer class="bg-black text-white py-6 md:py-8 px-4">
         <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <div class="flex items-center">
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-3">
-                            <span class="text-black font-bold">G&A</span>
-                        </div>
-                        <h3 class="text-xl font-bold rainbow-text">Gomberg&Associados</h3>
-                    </div>
-                    <p class="mt-2 text-gray-400">Excelência jurídica desde 2022</p>
-                </div>
-                                
-                <div class="flex space-x-4">
-                    <a href="https://wa.me/5511973383818" class="rainbow-button p-3 rounded-full hover:opacity-90 transition">
-                        <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="mailto:gombergeassociados@gmail.com" class="rainbow-button p-3 rounded-full hover:opacity-90 transition">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-            </div>
-                        
-            <div class="border-t border-gray-800 mt-8 pt-6 text-center text-gray-400">
-                <p>&copy; 2025 Gomberg&Associados - Todos os direitos reservados</p>
-                <p class="mt-1">OAB/SP 477.6146</p>
+             <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left"><div class="flex items-center justify-center md:justify-start"><div class="header-logo-circle w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center mr-2 md:mr-3"><span class="text-black font-bold text-sm md:text-base">G&A</span></div><h3 class="text-lg md:text-xl font-bold rainbow-text">Gomberg&Associados</h3></div><p class="mt-1 text-gray-400 text-xs">Excelência jurídica desde 2022</p></div>
+                 <div class="flex space-x-3 md:space-x-4"> <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="rainbow-button p-2 md:p-3 rounded-full" title="WhatsApp"><i class="fab fa-whatsapp text-base md:text-lg"></i></a> <a href="mailto:gomberg2010@hotmail.com" class="rainbow-button p-2 md:p-3 rounded-full" title="E-mail"><i class="fas fa-envelope text-base md:text-lg"></i></a></div>
+             </div>
+             <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400 text-xs">
+                <p>© 2024 Gomberg&Associados - Todos os direitos reservados.</p>
+                <p class="mt-1">OAB/SP 477.614</p> <!-- OAB Corrigido -->
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript Limpo e Funcional -->
     <script>
-        // Modal functions
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-            document.body.style.overflow = "hidden";
-        }
-                
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-                
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target.className === "modal") {
-                event.target.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-        }
-                
-        // Mobile menu toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById("mobileMenu");
-            if (menu.classList.contains("hidden")) {
-                menu.classList.remove("hidden");
-            } else {
-                menu.classList.add("hidden");
-            }
-        }
-
-        // Document management functions
-        let documents = [
-            { id: 1, name: "Modelo de Contrato", type: "pdf", category: "civilArticle" },
-            { id: 2, name: "Formulário de Procuração", type: "docx", category: "laborArticle" },
-            { id: 3, name: "Checklist Documentos", type: "xlsx", category: "criminalArticle" }
-        ];
-
-        function renderFiles() {
-            const fileItems = document.getElementById('fileItems');
-            fileItems.innerHTML = '';
-                        
-            documents.forEach(doc => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = `
-                    <div>
-                        <span class="font-medium">${doc.name}</span>
-                        <span class="text-gray-500 text-sm ml-2">.${doc.type}</span>
-                        <span class="text-xs bg-gray-200 px-2 py-1 rounded ml-2">${getCategoryName(doc.category)}</span>
-                    </div>
-                    <div class="file-actions">
-                        <button onclick="editFileName(${doc.id})" class="rainbow-text hover:underline">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button onclick="deleteFile(${doc.id})" class="rainbow-text hover:underline">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                `;
-                fileItems.appendChild(fileItem);
-            });
-                        
-            // Update article contents with related documents
-            updateArticleContents();
-        }
-
-        function getCategoryName(categoryId) {
-            switch(categoryId) {
-                case 'civilArticle': return 'Civil';
-                case 'laborArticle': return 'Trabalhista';
-                case 'criminalArticle': return 'Criminal';
-                default: return 'Geral';
-            }
-        }
-
-        function updateArticleContents() {
-            // Clear all article contents first
-            document.querySelectorAll('.article-content').forEach(el => {
-                el.innerHTML = '';
-            });
-                        
-            // Group documents by category
-            const documentsByCategory = {};
-            documents.forEach(doc => {
-                if (!documentsByCategory[doc.category]) {
-                    documentsByCategory[doc.category] = [];
-                }
-                documentsByCategory[doc.category].push(doc);
-            });
-                        
-            // Add documents to their respective articles
-            for (const [categoryId, docs] of Object.entries(documentsByCategory)) {
-                const articleContent = document.getElementById(categoryId);
-                if (articleContent) {
-                    const docsList = document.createElement('div');
-                    docsList.className = 'space-y-3';
-                                        
-                    docs.forEach(doc => {
-                        const docItem = document.createElement('div');
-                        docItem.className = 'border-b pb-2';
-                        docItem.innerHTML = `
-                            <h4 class="font-medium">${doc.name}</h4>
-                            <div class="flex justify-between items-center mt-1">
-                                <span class="text-sm text-gray-500">.${doc.type}</span>
-                                <button onclick="downloadDocument(${doc.id})" class="rainbow-text hover:underline text-sm">
-                                    <i class="fas fa-download mr-1"></i>Baixar
-                                </button>
-                            </div>
-                        `;
-                        docsList.appendChild(docItem);
-                    });
-                                        
-                    articleContent.appendChild(docsList);
-                }
-            }
-        }
-
-        function uploadFile() {
-            const fileInput = document.getElementById('fileInput');
-            const fileNameInput = document.getElementById('fileName');
-            const articleCategory = document.getElementById('articleCategory');
-                        
-            if (fileNameInput.value.trim() === '') {
-                alert('Por favor, insira um nome para o documento');
-                return;
-            }
-                        
-            if (fileInput.files.length === 0) {
-                alert('Por favor, selecione um arquivo');
-                return;
-            }
-                        
-            if (!articleCategory.value) {
-                alert('Por favor, selecione o artigo relacionado');
-                return;
-            }
-                        
-            const file = fileInput.files[0];
-            const fileType = file.name.split('.').pop().toLowerCase();
-                        
-            // In a real application, you would upload the file to a server here
-            // For this demo, we'll just add it to our documents array
-            const newDoc = {
-                id: documents.length + 1,
-                name: fileNameInput.value.trim(),
-                type: fileType,
-                category: articleCategory.value
-            };
-                        
-            documents.push(newDoc);
-            renderFiles();
-                        
-            // Reset form
-            fileNameInput.value = '';
-            fileInput.value = '';
-            articleCategory.value = '';
-                        
-            alert('Documento enviado com sucesso!');
-        }
-
-        function editFileName(id) {
-            const doc = documents.find(d => d.id === id);
-            if (!doc) return;
-                        
-            const newName = prompt('Editar nome do documento:', doc.name);
-            if (newName && newName.trim() !== '') {
-                doc.name = newName.trim();
-                renderFiles();
-            }
-        }
-
-        function deleteFile(id) {
-            if (confirm('Tem certeza que deseja excluir este documento?')) {
-                documents = documents.filter(d => d.id !== id);
-                renderFiles();
-            }
-        }
-
-        function downloadDocument(id) {
-            const doc = documents.find(d => d.id === id);
-            if (!doc) return;
-                        
-            alert(`Simulando download do documento: ${doc.name}.${doc.type}`);
-            // In a real application, this would trigger the file download
-        }
-
-        function toggleArticle(articleId) {
-            event.preventDefault();
-            const articleContent = document.getElementById(articleId);
-            if (articleContent.style.display === 'block') {
-                articleContent.style.display = 'none';
-            } else {
-                articleContent.style.display = 'block';
-            }
-        }
-
-        // Initialize file list when page loads
-        document.addEventListener('DOMContentLoaded', renderFiles);
+        function openModal(d){const e=document.getElementById(d);if(e){document.querySelectorAll(".modal").forEach(t=>{t.style.display==="block"&&closeModal(t.id)});e.style.display="block";document.body.style.overflow="hidden"}else console.error("Modal not found:",d)}function closeModal(d){const e=document.getElementById(d);if(e){e.style.display="none";document.querySelector('.modal[style*="display: block"]')||(document.body.style.overflow="auto")}}window.addEventListener("click",function(d){document.querySelectorAll(".modal").forEach(e=>{d.target==e&&closeModal(e.id)})});window.addEventListener("keydown",function(d){if(d.key==="Escape"){document.querySelectorAll('.modal[style*="display: block"]').forEach(e=>closeModal(e.id))}});function toggleMobileMenu(){const d=document.getElementById("mobileMenu");d?d.classList.toggle("hidden"):console.error("Mobile menu not found.")}function toggleContent(d){const e=document.getElementById(d);if(e){let t=e.classList.contains("hidden");document.querySelectorAll(".area-container .area-content").forEach(n=>{n.id!==d&&n.classList.add("hidden")});t?e.classList.remove("hidden"):e.classList.add("hidden")}else console.error("Content element not found:",d)}document.addEventListener("DOMContentLoaded",()=>console.log("Page Ready."));
     </script>
+
 </body>
 </html>
