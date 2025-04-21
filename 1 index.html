@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gomberg&Associados - Escritório de Advocacia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos CSS Corrigidos -->
+    <style>
+        /* Estilos Base */
+        html { scroll-behavior: smooth; }
+        body { font-family: sans-serif; }
+        .gold-bg { background-color: #D4AF37; }
+
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); /* Efeito blur opcional */ }
+        .modal-content { background-color: #fefefe; margin: 7% auto; padding: 25px 30px 30px 30px; border: none; width: 90%; max-width: 700px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
+        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; /* Aumenta área de clique */ }
+        .close:hover { color: #333; }
+
+        /* --- ESTILO RAINBOW FUNCIONAL --- */
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .rainbow-button {
+            display: inline-block; padding: 0.6rem 1rem; /* Leve ajuste */ font-weight: bold; color: white !important;
+            border: none; border-radius: 0.375rem; /* rounded-md */
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); /* Cores mais vivas */
+            background-size: 400% 400%;
+            animation: rainbow 5s ease infinite; /* Animation */
+            cursor: pointer; text-align: center; white-space: nowrap; text-decoration: none;
+            transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, opacity 0.15s;
+        }
+        .rainbow-button:hover {
+            transform: scale(1.03); /* Aumenta um pouco */ box-shadow: 0 5px 12px rgba(0,0,0,0.2); opacity: 0.95;
+        }
+        .hero-button { padding: 0.7rem 1.4rem; }
+
+        .rainbow-text { background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; animation: rainbow 5s ease infinite; background-size: 400% 400%; }
+
+        /* Efeito Hover Logo */
+        .header-logo-circle { transition: transform 0.2s ease-out; cursor: default; }
+        .header-logo-circle:hover { transform: scale(1.05); }
+
+        /* Conteúdo Áreas */
+        .area-content { margin-top: 0.75rem; padding: 1.25rem; background-color: #F9FAFB; border-radius: 0.5rem; box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07); text-align: left; border: 1px solid #e5e7eb; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, visibility 0s linear 0.5s; max-height: 0px; /* Inicia fechado para animação */ overflow: hidden; opacity: 0; width: 100%; visibility: hidden; } /* Starts hidden */
+        .area-content:not(.hidden) { max-height: 1000px; /* Altura suficiente quando aberto */ opacity: 1; visibility: visible; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out 0.1s, visibility 0s linear 0s; } /* Ajuste na transição */
+
+        .area-container { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
+        @media (min-width: 640px) { .area-container { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (min-width: 1024px) { .area-container { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        .area-container > div { display: flex; flex-direction: column; align-items: center; width: 100%; }
+        .area-container .rainbow-button { margin-bottom: 0.5rem; width: 90%; max-width: 300px; }
+        .area-content h4 { font-size: 1.125rem; font-weight: bold; margin-bottom: 0.75rem; }
+        .area-content p, .area-content li { line-height: 1.5; color: #374151; font-size: 0.875rem; }
+        .area-content ul { list-style: disc; padding-left: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.75rem; }
+        .area-content strong { color: #1f2937; font-weight: 600; }
+
+        /* Modal Equipe */
+        .team-member { margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
+        .team-member:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .team-member h3 { font-size: 1.05rem; font-weight: bold; color: #1f2937; margin-bottom: 0.25rem; }
+        .team-member .oab { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.4rem; display: block; }
+        .team-member p { font-size: 0.85rem; color: #4b5563; line-height: 1.5; }
+
+        /* Modal Redes Sociais */
+        .social-links a { display: flex; align-items: center; padding: 0.7rem 1rem; margin-bottom: 0.6rem; border-radius: 0.375rem; background-color: #f3f4f6; transition: background-color 0.2s ease-out, transform 0.2s ease-out; text-decoration: none; color: #374151; font-weight: 500; }
+        .social-links a:hover { background-color: #e5e7eb; transform: translateX(4px); }
+        .social-links i { font-size: 1.3rem; margin-right: 0.8rem; width: 25px; text-align: center; }
+        .social-links a.facebook i { color: #1877F2; } .social-links a.instagram i { color: #E4405F; } .social-links a.twitter i { color: #000000; }
+
+        /* Estilos para Links Importantes (Hero Section) */
+        .important-links-title {
+             font-size: 1rem; /* Equivalente a text-base ou um pouco maior */
+             font-weight: 600; /* Equivalente a font-semibold */
+             margin-bottom: 0.75rem; /* Equivalente a mb-3 */
+             color: #1f2937; /* Cor mais escura, como text-gray-800 */
+        }
+        .important-links-list {
+            list-style: none; /* Remove bullets padrão */
+            padding-left: 0; /* Remove padding padrão da lista */
+            margin: 0;
+            space-y-1; /* Adiciona espaço entre itens (Tailwind não tem direto para ul, aplicar nos li ou usar div) */
+        }
+        .important-links-list li {
+            margin-bottom: 0.3rem; /* Espaçamento entre itens */
+        }
+        .important-links-list a {
+            font-size: 0.875rem; /* Equivalente a text-sm */
+            color: #374151; /* Cor como text-gray-700 */
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .important-links-list a:hover {
+            color: #000000; /* Preto no hover */
+            text-decoration: underline;
+        }
+
+        /* Estilos para Links Legais (Footer) */
+        .footer-legal-links {
+            margin-top: 1rem; /* Espaço acima */
+            text-align: center;
+        }
+        .footer-legal-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Para colocar lado a lado em telas maiores */
+            flex-wrap: wrap; /* Quebra linha se não couber */
+            justify-content: center; /* Centraliza os itens */
+            gap: 0.5rem 1.5rem; /* Espaçamento vertical e horizontal */
+        }
+         .footer-legal-links li {
+             /* display: inline-block; */ /* Alternativa se não usar flex */
+             /* margin: 0 0.75rem; */ /* Espaçamento se usar inline-block */
+         }
+        .footer-legal-links a {
+            font-size: 0.75rem; /* text-xs */
+            color: #9ca3af; /* text-gray-400 */
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .footer-legal-links a:hover {
+            color: #ffffff; /* text-white */
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body class="gold-bg text-black font-sans">
+    <!-- Header Limpo -->
+    <header class="gold-bg shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-2.5 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center flex-shrink-0 mr-4">
+                <div class="header-logo-circle w-10 h-10 md:w-12 md:h-12 bg-black rounded-full flex items-center justify-center mr-2 md:mr-3">
+                    <span class="text-white font-bold text-lg md:text-xl">G&A</span>
+                </div>
+                <h1 class="text-lg sm:text-xl md:text-2xl font-bold whitespace-nowrap">Gomberg&Associados</h1>
+            </div>
+
+            <!-- Navegação Desktop -->
+            <nav class="hidden lg:flex flex-nowrap items-center space-x-2 xl:space-x-3">
+                 <button type="button" onclick="openModal('aboutModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Sobre Nós</button>
+                 <button type="button" onclick="openModal('specialtiesModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Especialidades</button>
+                 <button type="button" onclick="openModal('socialModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Redes Sociais</button>
+                 <button type="button" onclick="openModal('contactModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Contatos</button>
+                 <button type="button" onclick="openModal('teamModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Nossa Equipe</button>
+            </nav>
+
+            <!-- Botão Menu Mobile -->
+            <button type="button" class="lg:hidden text-xl rainbow-button p-1.5" onclick="toggleMobileMenu()"> <i class="fas fa-bars"></i> </button>
+        </div>
+
+        <!-- Menu Mobile -->
+        <div id="mobileMenu" class="lg:hidden hidden gold-bg px-4 pb-4 absolute w-full shadow-lg z-40 border-t border-black/10">
+             <button type="button" onclick="openModal('aboutModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Sobre Nós</button>
+             <button type="button" onclick="openModal('specialtiesModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Especialidades</button>
+             <button type="button" onclick="openModal('socialModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Redes Sociais</button>
+             <button type="button" onclick="openModal('contactModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Contatos</button>
+             <button type="button" onclick="openModal('teamModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Nossa Equipe</button>
+        </div>
+    </header>
+
+    <!-- Hero Section com Imagem -->
+    <section class="py-10 md:py-12 px-4 gold-bg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+            <!-- Coluna Esquerda: Texto, Botão e Links Importantes -->
+            <div class="text-center md:text-left md:w-1/2 lg:w-3/5 order-2 md:order-1">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-black">
+                    <span class="rainbow-text">Excelência Jurídica</span> <span class="block sm:inline">ao Seu Alcance</span>
+                </h2>
+                <p class="text-base lg:text-lg mb-6 text-gray-900">Defendendo seus direitos com expertise e comprometimento.</p>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-8">
+                     <button type="button" onclick="openModal('contactModal')" class="rainbow-button hero-button font-bold">Fale Conosco</button>
+                </div>
+
+                <!-- Links Importantes -->
+                <div class="mt-6 md:mt-0">
+                    <h3 class="important-links-title">LINKS IMPORTANTES</h3>
+                    <ul class="important-links-list">
+                        <li><a href="https://www.delegaciaeletronica.policiacivil.sp.gov.br/ssp-de-cidadao/home" target="_blank" rel="noopener noreferrer">Delegacia eletrônica da Policia Civil</a></li>
+                        <li><a href="https://www.policiamilitar.sp.gov.br/" target="_blank" rel="noopener noreferrer">Polícia Militar</a></li>
+                        <li><a href="https://www.corpodebombeiros.sp.gov.br/#/" target="_blank" rel="noopener noreferrer">Corpo de Bombeiros</a></li>
+                        <li><a href="https://www.policiacivil.sp.gov.br/portal/faces/pages_home?_afrLoop=1731010598993019&_afrWindowMode=0&_afrWindowId=null#!%40%40%3F_afrWindowId%3Dnull%26_afrLoop%3D1731010598993019%26_afrWindowMode%3D0%26_adf.ctrl-state%3Dcuhx27vh1_4" target="_blank" rel="noopener noreferrer">Policia Civil</a></li>
+                        <li><a href="https://www.mpsp.mp.br/" target="_blank" rel="noopener noreferrer">Ministério Público do estado de são paulo</a></li>
+                        <li><a href="https://www.tjsp.jus.br/" target="_blank" rel="noopener noreferrer">Tribunal de justiça do estado de são paulo</a></li>
+                        <li><a href="https://digitei.com/boletim-de-ocorrencia-online-na-delegacia-do-idoso-como-fazer/#google_vignette" target="_blank" rel="noopener noreferrer">Delegacia do Idoso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Coluna Direita: Imagem -->
+            <div class="md:w-1/2 lg:w-2/5 flex justify-center order-1 md:order-2 mb-6 md:mb-0">
+                 <img src="advogado-cartoon.png"
+                     alt="Ilustração Advogado Gomberg & Associados"
+                     class="max-w-[250px] sm:max-w-[300px] lg:max-w-[280px] xl:max-w-[320px] h-auto rounded-lg shadow-xl object-contain"
+                     onerror="this.style.display='none'; console.warn('Imagem não encontrada em: ' + this.src)">
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Áreas de Atuação -->
+    <section class="py-12 px-4 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold mb-10 text-center rainbow-text">Áreas de Atuação</h2>
+            <div class="area-container mt-8">
+                <div><button type="button" id="btn-civil" class="rainbow-button" onclick="toggleContent('content-civil')">Direito Civil</button><div id="content-civil" class="area-content hidden"><h4 class="rainbow-text">Direito Civil</h4><p class="mb-2">Expertise em Família e Cível:</p><ul><li>Divórcio/Partilha</li><li>União Estável</li><li>Pensão Alimentícia</li><li>Guarda/Visitas</li><li>Contratos</li><li>Indenizações</li><li>Imobiliário</li></ul><p class="mt-3 text-xs text-gray-500 italic">Soluções jurídicas personalizadas.</p></div></div>
+                <div><button type="button" id="btn-trabalhista" class="rainbow-button" onclick="toggleContent('content-trabalhista')">Direito Trabalhista</button><div id="content-trabalhista" class="area-content hidden"><h4 class="rainbow-text">Direito Trabalhista</h4><p class="font-semibold mb-3">Defesa de direitos na relação de trabalho:</p><ul><li><strong>Rescisão Indireta:</strong> Quando a falta grave é do empregador.</li><li><strong>Assédio Moral/Sexual:</strong> Combate e reparação.</li><li><strong>Verbas Rescisórias:</strong> Cálculo e cobrança.</li><li>Horas Extras, Adicionais</li><li>Acidente de Trabalho</li></ul><p class="mt-4 text-xs italic text-gray-600">Protegendo seus direitos trabalhistas.</p></div></div>
+                <div><button type="button" id="btn-penal" class="rainbow-button" onclick="toggleContent('content-penal')">Direito Penal</button><div id="content-penal" class="area-content hidden"><h4 class="rainbow-text">Direito Penal</h4><p class="mb-2">Atuação em todas as fases:</p><ul><li>Acompanhamento em Delegacia</li><li>Audiências</li><li>ANPP</li><li>Liberdade/HC</li><li>Execução Penal</li><li>Tribunal do Júri</li><li>Assistência à Acusação</li></ul><p class="mt-3 text-xs text-gray-500 italic">Defesa técnica especializada.</p></div></div>
+                <div><button type="button" id="btn-previdenciario" class="rainbow-button" onclick="toggleContent('content-previdenciario')">Direito Previdenciário</button><div id="content-previdenciario" class="area-content hidden"><h4 class="rainbow-text">Direito Previdenciário</h4><p class="mb-2">Seu benefício INSS:</p><ul><li>BPC/LOAS</li><li>Auxílios Incapacidade</li><li>Aposentadorias</li><li>Pensão por Morte</li><li>Acidente de Trabalho</li><li>Revisões/Recursos</li></ul><p class="mt-3 text-xs text-gray-500 italic">Assessoria completa.</p></div></div>
+                <div><button type="button" id="btn-medico" class="rainbow-button" onclick="toggleContent('content-medico')">Direito Médico</button><div id="content-medico" class="area-content hidden"><h4 class="rainbow-text">Direito Médico/Saúde</h4><p class="mb-2">Defesa de pacientes:</p><ul><li>Negativas Planos Saúde</li><li>Acesso a Tratamentos (TEA, etc.)</li><li>Medicamentos</li><li>Erro Médico</li><li>Direitos do Paciente</li><li>Liminares Urgentes</li></ul><p class="mt-3 text-xs text-gray-500 italic">Protegendo seu direito à saúde.</p></div></div>
+                <div><button type="button" id="btn-consumidor" class="rainbow-button" onclick="toggleContent('content-consumidor')">Direito do Consumidor</button><div id="content-consumidor" class="area-content hidden"><h4 class="rainbow-text">Direito do Consumidor</h4><p class="mb-2">Proteção nas relações de consumo:</p><ul><li>Revisão Contratos</li><li>Juros Abusivos</li><li>Busca/Apreensão Veículos</li><li>Produtos/Serviços Defeituosos</li><li>Cobrança Indevida</li><li>Negativação Indevida</li></ul><p class="mt-3 text-xs text-gray-500 italic">Seus direitos garantidos.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modais -->
+    <div id="aboutModal" class="modal"><!-- Conteúdo Sobre Nós --> <div class="modal-content"><span class="close" onclick="closeModal('aboutModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2> <p class="text-gray-700 leading-relaxed text-sm">Referência em advocacia especializada, defendemos seus direitos com excelência há mais de 3 anos. Nossa equipe qualificada oferece soluções jurídicas eficientes, personalizadas e éticas, combinando tradição e inovação para os melhores resultados com abordagem estratégica e humanizada.</p> </div> </div>
+    <div id="specialtiesModal" class="modal"><!-- Conteúdo Especialidades --> <div class="modal-content"><span class="close" onclick="closeModal('specialtiesModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2> <p class="mb-6 text-gray-600 text-sm">Atuação abrangente, incluindo:</p> <div class="grid grid-cols-2 md:grid-cols-3 gap-3"> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Civil/Família</h3><ul class="list-disc pl-4 space-y-0.5"><li>Divórcio</li><li>Pensão</li><li>Contratos</li><li>Indenizações</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Trabalhista</h3><ul class="list-disc pl-4 space-y-0.5"><li>Reclamações</li><li>Defesas</li><li>Rescisão</li><li>Assédio</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Penal</h3><ul class="list-disc pl-4 space-y-0.5"><li>Defesa Criminal</li><li>Audiências/Júri</li><li>Execução</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Previdenciário</h3><ul class="list-disc pl-4 space-y-0.5"><li>BPC/Auxílios</li><li>Aposentadorias</li><li>Revisões</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Médico/Saúde</h3><ul class="list-disc pl-4 space-y-0.5"><li>Planos Saúde</li><li>Tratamentos</li><li>Erro Médico</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Consumidor</h3><ul class="list-disc pl-4 space-y-0.5"><li>Juros Abusivos</li><li>Contratos</li><li>Negativação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Extrajudicial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Inventário/Divórcio</li><li>Mediação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Outras</h3><ul class="list-disc pl-4 space-y-0.5"><li>Consulte-nos</li></ul></div> </div></div></div>
+    <div id="contactModal" class="modal"><!-- Conteúdo Contato --> <div class="modal-content"><span class="close" onclick="closeModal('contactModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossos Contatos</h2> <div class="space-y-4"> <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"> <div class="rainbow-button p-3 rounded-full mr-4 flex-shrink-0 group-hover:opacity-90"><i class="fab fa-whatsapp text-xl"></i></div> <div><p class="font-medium text-sm">WhatsApp</p><p class="rainbow-text group-hover:underline block break-words text-xs">(11) 97338-3818</p></div></a> <a href="mailto:gomberg2010@hotmail.com" class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition group"> <div class="rainbow-button p-3 rounded-full mr-4 flex-shrink-0 group-hover:opacity-90"><i class="fas fa-envelope text-xl"></i></div> <div><p class="font-medium text-sm">E-mail</p><p class="rainbow-text group-hover:underline block break-words text-xs">gomberg2010@hotmail.com</p></div></a> <div class="pt-4 border-t mt-4"><p class="font-medium mb-1 text-sm">Horário Atendimento</p><p class="text-xs text-gray-700">Seg-Sex: 9h-18h / Sáb: 9h-12h (agendado)</p></div></div></div></div>
+    <div id="teamModal" class="modal"><!-- Conteúdo Equipe --> <div class="modal-content"><span class="close" onclick="closeModal('teamModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossa Equipe</h2> <div class="team-member"> <h3>Dr. Luiz Roberto Ribeiro Gomberg</h3> <span class="oab">OAB/SP 477.614</span> <p>Esp. em Direito Civil, Trabalhista, Penal, Militar, Constitucional, Médico, Consumidor, Previdenciário. Atua em mediação, conflitos, advocacia extrajudicial, defesa executado, execuções.</p> </div> <div class="team-member"> <h3>Drª. Sara Ribeiro Gomberg</h3> <span class="oab">OAB/SP 409.398</span> <p>Esp. em Direito Civil, Direito do Trabalho e Direito Criminal.</p></div></div></div>
+    <div id="socialModal" class="modal"><!-- Conteúdo Redes Sociais --> <div class="modal-content"><span class="close" onclick="closeModal('socialModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Redes Sociais</h2> <div class="social-links"><a href="https://www.facebook.com/luiz.roberto.ribeiro.gomberg.67768" target="_blank" rel="noopener noreferrer" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a><a href="https://www.instagram.com/gomberg2023.adv/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a href="https://x.com/lui18179" target="_blank" rel="noopener noreferrer" class="twitter"><i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span></a></div></div></div>
+
+    <!-- Footer com Links Legais -->
+    <footer class="bg-black text-white py-6 md:py-8 px-4">
+        <div class="container mx-auto">
+             <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 text-center md:text-left"><div class="flex items-center justify-center md:justify-start"><div class="header-logo-circle w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center mr-2 md:mr-3"><span class="text-black font-bold text-sm md:text-base">G&A</span></div><h3 class="text-lg md:text-xl font-bold rainbow-text">Gomberg&Associados</h3></div><p class="mt-1 text-gray-400 text-xs">Excelência jurídica desde 2022</p></div>
+                 <div class="flex space-x-3 md:space-x-4"> <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="rainbow-button p-2 md:p-3 rounded-full" title="WhatsApp"><i class="fab fa-whatsapp text-base md:text-lg"></i></a> <a href="mailto:gomberg2010@hotmail.com" class="rainbow-button p-2 md:p-3 rounded-full" title="E-mail"><i class="fas fa-envelope text-base md:text-lg"></i></a></div>
+             </div>
+             <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400 text-xs">
+                <p>© 2024 Gomberg&Associados - Todos os direitos reservados.</p>
+                <p class="mt-1">OAB/SP 477.614</p>
+            </div>
+
+            <!-- ===== INÍCIO DOS LINKS LEGAIS NO RODAPÉ ===== -->
+            <div class="footer-legal-links">
+                <ul>
+                    <li><a href="https://www.planalto.gov.br/ccivil_03/Constituicao/Constituicao.htm" target="_blank" rel="noopener noreferrer">CONSTITUIÇÃO FEDERAL</a></li>
+                    <li><a href="https://www.planalto.gov.br/ccivil_03/LEIS/2002/L10406compilada.htm" target="_blank" rel="noopener noreferrer">CÓDIGO CIVIL</a></li>
+                    <li><a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm" target="_blank" rel="noopener noreferrer">CÓDIGO PENAL</a></li>
+                    <li><a href="https://www.planalto.gov.br/ccivil_03/Leis/2003/L10.741.htm" target="_blank" rel="noopener noreferrer">ESTATUTO DA PESSOA IDOSA</a></li>
+                </ul>
+            </div>
+            <!-- ===== FIM DOS LINKS LEGAIS NO RODAPÉ ===== -->
+
+        </div>
+    </footer>
+
+    <!-- JavaScript Limpo e Funcional -->
+    <script>
+        function openModal(d){const e=document.getElementById(d);if(e){document.querySelectorAll(".modal").forEach(t=>{t.style.display==="block"&&closeModal(t.id)});e.style.display="block";document.body.style.overflow="hidden"}else console.error("Modal not found:",d)}function closeModal(d){const e=document.getElementById(d);if(e){e.style.display="none";document.querySelector('.modal[style*="display: block"]')||(document.body.style.overflow="auto")}}window.addEventListener("click",function(d){document.querySelectorAll(".modal").forEach(e=>{d.target==e&&closeModal(e.id)})});window.addEventListener("keydown",function(d){if(d.key==="Escape"){document.querySelectorAll('.modal[style*="display: block"]').forEach(e=>closeModal(e.id))}});function toggleMobileMenu(){const d=document.getElementById("mobileMenu");d?d.classList.toggle("hidden"):console.error("Mobile menu not found.")}function toggleContent(d){const e=document.getElementById(d);if(e){let t=e.classList.contains("hidden");document.querySelectorAll(".area-container .area-content").forEach(n=>{n.id!==d&&n.classList.add("hidden")});t?e.classList.remove("hidden"):e.classList.add("hidden")}else console.error("Content element not found:",d)}document.addEventListener("DOMContentLoaded",()=>console.log("Page Ready."));
+    </script>
+
+</body>
+</html>
