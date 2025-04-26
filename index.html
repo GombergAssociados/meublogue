@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Estilos CSS -->
     <style>
-        /* ... (Estilos CSS Omitidos por Brevidade - Iguais à versão anterior) ... */
+        /* ... (Estilos CSS Omitidos por Brevidade - Iguais à versão anterior, incluindo os ajustes para footer-logo-section, footer-icons-section e footer-counter-wrapper) ... */
          /* Estilos Base */
         html { scroll-behavior: smooth; }
         body { font-family: sans-serif; }
@@ -17,7 +17,10 @@
         /* Modal */
         .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }
         .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px 30px 30px 30px; border: none; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; }
+        /* Ajuste específico para o modal do mapa */
+        #locationModal .modal-content { max-width: 750px; /* Mais largo para o mapa */ padding: 15px; /* Menos padding para dar espaço ao mapa */ }
+        #locationModal iframe { border:0; width: 100%; display: block; } /* Estilo para o iframe do mapa */
+        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; z-index: 110; /* Garante que fique sobre o mapa */ }
         .close:hover { color: #333; }
 
         /* --- ESTILO RAINBOW FUNCIONAL --- */
@@ -25,6 +28,7 @@
         .rainbow-button { display: inline-block; padding: 0.6rem 1rem; font-weight: bold; color: white !important; border: none; border-radius: 0.375rem; background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); background-size: 400% 400%; animation: rainbow 5s ease infinite; cursor: pointer; text-align: center; white-space: nowrap; text-decoration: none; transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, opacity 0.15s; }
         .rainbow-button:hover { transform: scale(1.03); box-shadow: 0 5px 12px rgba(0,0,0,0.2); opacity: 0.95; }
         .hero-button { padding: 0.7rem 1.4rem; }
+        .nav-button-small { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
         .rainbow-text { background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; animation: rainbow 5s ease infinite; background-size: 400% 400%; }
 
         /* Efeito Hover Logo */
@@ -67,10 +71,10 @@
         .important-links-list a:hover { color: #000000; text-decoration: underline; }
 
         /* Estilos para Seção Notícias (Hero Section) */
-        .news-section-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: #1f2937; } /* Título principal da seção */
-        .news-item { margin-bottom: 1.5rem; } /* Espaço abaixo de cada notícia */
-        .news-item:last-child { margin-bottom: 0; } /* Remove margem do último item */
-        .news-item-title { font-size: 0.875rem; font-weight: bold; color: #1f2937; margin-bottom: 0.25rem; } /* Título de cada notícia */
+        .news-section-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: #1f2937; }
+        .news-item { margin-bottom: 1.5rem; }
+        .news-item:last-child { margin-bottom: 0; }
+        .news-item-title { font-size: 0.875rem; font-weight: bold; color: #1f2937; margin-bottom: 0.25rem; }
         .news-item p { font-size: 0.875rem; color: #374151; line-height: 1.5; margin-bottom: 0.5rem; }
         .news-source { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
         .news-source a { color: #2563eb; text-decoration: underline; transition: color 0.2s; }
@@ -93,112 +97,95 @@
         #contactForm button[type="submit"] { display: inline-block; padding: 0.7rem 1.5rem; background-color: #D4AF37; color: black; font-weight: bold; border: none; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; width: 100%; }
         #contactForm button[type="submit"]:hover { background-color: #c8a031; transform: scale(1.02); }
         #contactForm .form-description { font-size: 0.9rem; color: #4b5563; margin-bottom: 1.5rem; text-align: center; }
+
+        /* Estilo para o Contador e Localização no Footer */
+        .footer-bottom-info { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem 2rem; margin-top: 1.5rem; }
+        .footer-counter-wrapper { display: inline-block; vertical-align: middle; }
+        .footer-counter-wrapper .rainbow-button { padding: 0.3rem 0.6rem; font-size: 0.75rem; line-height: 1; }
+        .footer-counter-wrapper a, .footer-counter-wrapper span { color: white !important; text-decoration: none !important; font-weight: normal; }
+        .footer-counter-wrapper img { border: 0; vertical-align: middle; max-height: 20px; width: auto; }
+        .footer-location a { font-size: 0.75rem; color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 0.25rem; transition: color 0.2s ease; cursor: pointer; /* Mudado de link direto para cursor pointer */ }
+        .footer-location a:hover { color: #ffffff; text-decoration: underline; }
+        .footer-location i { font-size: 0.85rem; }
+
+        /* Ajuste logo/ícones footer */
+        .footer-logo-section { display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; margin-bottom: 1rem; }
+        .footer-icons-section { display: flex; justify-content: center; width: 100%; }
+         @media (min-width: 768px) { .footer-logo-section { width: auto; justify-content: flex-start; text-align: left; margin-bottom: 0; } .footer-icons-section { width: auto; justify-content: flex-end; } }
+
     </style>
 </head>
 <body class="gold-bg text-black font-sans">
-    <!-- Header -->
+    <!-- Header Centralizado e com Efeito -->
     <header class="gold-bg shadow-md sticky top-0 z-50">
-         <!-- ... (Código Header Omitido) ... -->
-          <div class="container mx-auto px-4 py-2.5 flex justify-between items-center">
-            <div class="flex items-center flex-shrink-0 mr-4">
-                <div class="header-logo-circle w-10 h-10 md:w-12 md:h-12 bg-black rounded-full flex items-center justify-center mr-2 md:mr-3">
-                    <span class="text-white font-bold text-lg md:text-xl">G&A</span>
+         <div class="container mx-auto px-4 py-3 flex justify-center items-center">
+            <div class="flex items-center">
+                <div class="header-logo-circle w-11 h-11 md:w-14 md:h-14 bg-black rounded-full flex items-center justify-center mr-3 md:mr-4">
+                    <span class="text-white font-bold text-lg md:text-2xl">G&A</span>
                 </div>
-                <h1 class="text-lg sm:text-xl md:text-2xl font-bold whitespace-nowrap">Gomberg&Associados</h1>
+                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold whitespace-nowrap rainbow-text">Gomberg&Associados</h1>
             </div>
-            <nav class="hidden lg:flex flex-nowrap items-center space-x-2 xl:space-x-3">
-                 <button type="button" onclick="openModal('aboutModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Sobre Nós</button>
-                 <button type="button" onclick="openModal('specialtiesModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Especialidades</button>
-                 <button type="button" onclick="openModal('socialModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Redes Sociais</button>
-                 <button type="button" onclick="openModal('contactModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Contatos</button>
-                 <button type="button" onclick="openModal('teamModal')" class="rainbow-button text-xs xl:text-sm flex-shrink-0">Nossa Equipe</button>
-            </nav>
-            <button type="button" class="lg:hidden text-xl rainbow-button p-1.5" onclick="toggleMobileMenu()"> <i class="fas fa-bars"></i> </button>
-        </div>
-        <div id="mobileMenu" class="lg:hidden hidden gold-bg px-4 pb-4 absolute w-full shadow-lg z-40 border-t border-black/10">
-             <button type="button" onclick="openModal('aboutModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Sobre Nós</button>
-             <button type="button" onclick="openModal('specialtiesModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Especialidades</button>
-             <button type="button" onclick="openModal('socialModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Redes Sociais</button>
-             <button type="button" onclick="openModal('contactModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Contatos</button>
-             <button type="button" onclick="openModal('teamModal'); toggleMobileMenu();" class="rainbow-button block w-full text-left my-1 text-sm">Nossa Equipe</button>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section com Botões Movidos -->
     <section class="py-10 md:py-12 px-4 gold-bg">
-         <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-            <!-- Coluna Esquerda -->
-            <div class="text-center md:text-left md:w-1/2 lg:w-3/5 order-2 md:order-1">
+         <!-- ... (Código Hero Section Omitido - Sem alterações na estrutura, apenas reordenação de notícias) ... -->
+         <div class="container mx-auto flex flex-col items-center justify-center gap-8 md:gap-12">
+            <div class="text-center w-full order-1">
                 <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-black">
                     <span class="rainbow-text">Excelência Jurídica</span> <span class="block sm:inline">ao Seu Alcance</span>
                 </h2>
-                <p class="text-base lg:text-lg mb-6 text-gray-900">Defendendo seus direitos com expertise e comprometimento.</p>
-                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 mb-8">
+                <p class="text-base lg:text-lg mb-8 text-gray-900">Defendendo seus direitos com expertise e comprometimento.</p>
+                <div class="flex flex-wrap gap-3 justify-center mb-10">
                      <button type="button" onclick="openModal('contactModal')" class="rainbow-button hero-button font-bold">Fale Conosco</button>
+                     <button type="button" onclick="openModal('aboutModal')" class="rainbow-button nav-button-small flex-shrink-0">Sobre Nós</button>
+                     <button type="button" onclick="openModal('specialtiesModal')" class="rainbow-button nav-button-small flex-shrink-0">Especialidades</button>
+                     <button type="button" onclick="openModal('socialModal')" class="rainbow-button nav-button-small flex-shrink-0">Redes Sociais</button>
+                     <button type="button" onclick="openModal('teamModal')" class="rainbow-button nav-button-small flex-shrink-0">Nossa Equipe</button>
                 </div>
-
-                <!-- Links Importantes -->
-                <div class="mt-6 md:mt-0 mb-8">
-                    <h3 class="important-links-title">LINKS IMPORTANTES</h3>
-                    <ul class="important-links-list">
-                        <li><a href="https://www.delegaciaeletronica.policiacivil.sp.gov.br/ssp-de-cidadao/home" target="_blank" rel="noopener noreferrer">Delegacia eletrônica da Policia Civil</a></li>
-                        <li><a href="https://www.policiamilitar.sp.gov.br/" target="_blank" rel="noopener noreferrer">Polícia Militar</a></li>
-                        <li><a href="https://www.corpodebombeiros.sp.gov.br/#/" target="_blank" rel="noopener noreferrer">Corpo de Bombeiros</a></li>
-                        <li><a href="https://www.policiacivil.sp.gov.br/portal/faces/pages_home?_afrLoop=1731010598993019&_afrWindowMode=0&_afrWindowId=null#!%40%40%3F_afrWindowId%3Dnull%26_afrLoop%3D1731010598993019%26_afrWindowMode%3D0%26_adf.ctrl-state%3Dcuhx27vh1_4" target="_blank" rel="noopener noreferrer">Policia Civil</a></li>
-                        <li><a href="https://www.mpsp.mp.br/" target="_blank" rel="noopener noreferrer">Ministério Público do estado de são paulo</a></li>
-                        <li><a href="https://www.tjsp.jus.br/" target="_blank" rel="noopener noreferrer">Tribunal de justiça do estado de são paulo</a></li>
-                        <li><a href="https://digitei.com/boletim-de-ocorrencia-online-na-delegacia-do-idoso-como-fazer/#google_vignette" target="_blank" rel="noopener noreferrer">Delegacia do Idoso</a></li>
-                    </ul>
-                </div>
-
-                <!-- Seção de Notícias -->
-                <div class="mb-8">
-                    <h3 class="news-section-title">Notícias</h3> <!-- Título principal da seção -->
-
-                    <!-- Notícia 1: Lava-Pés -->
-                    <div class="news-item">
-                         <p class="news-item-title">Cartilha - Campanha Lava-Pés: Cuidados com os Pés Diabéticos</p>
-                         <p>A Campanha Lava-pés é uma iniciativa apoiada pelo Ministério da Saúde para promoção da saúde e educação popular em saúde, buscando orientar ações nos serviços e escolas de saúde.</p>
-                         <p class="news-source">
-                             Fonte: <a href="https://encurtador.com.br/euIZf" target="_blank" rel="noopener noreferrer">Acesse a Cartilha</a> - 21/05/2024
-                         </p>
+                 <div class="md:flex md:gap-12 justify-center">
+                    <div class="mb-8 md:mb-0 md:w-1/2 lg:w-2/5">
+                        <h3 class="important-links-title">LINKS IMPORTANTES</h3>
+                        <ul class="important-links-list text-left">
+                            <li><a href="https://www.delegaciaeletronica.policiacivil.sp.gov.br/ssp-de-cidadao/home" target="_blank" rel="noopener noreferrer">Delegacia eletrônica da Policia Civil</a></li>
+                            <li><a href="https://www.policiamilitar.sp.gov.br/" target="_blank" rel="noopener noreferrer">Polícia Militar</a></li>
+                            <li><a href="https://www.corpodebombeiros.sp.gov.br/#/" target="_blank" rel="noopener noreferrer">Corpo de Bombeiros</a></li>
+                            <li><a href="https://www.policiacivil.sp.gov.br/portal/faces/pages_home?_afrLoop=1731010598993019&_afrWindowMode=0&_afrWindowId=null#!%40%40%3F_afrWindowId%3Dnull%26_afrLoop%3D1731010598993019%26_afrWindowMode%3D0%26_adf.ctrl-state%3Dcuhx27vh1_4" target="_blank" rel="noopener noreferrer">Policia Civil</a></li>
+                            <li><a href="https://www.mpsp.mp.br/" target="_blank" rel="noopener noreferrer">Ministério Público do estado de são paulo</a></li>
+                            <li><a href="https://www.tjsp.jus.br/" target="_blank" rel="noopener noreferrer">Tribunal de justiça do estado de são paulo</a></li>
+                            <li><a href="https://digitei.com/boletim-de-ocorrencia-online-na-delegacia-do-idoso-como-fazer/#google_vignette" target="_blank" rel="noopener noreferrer">Delegacia do Idoso</a></li>
+                        </ul>
                     </div>
-
-                    <!-- Notícia 2: CDC -->
-                    <div class="news-item">
-                         <p class="news-item-title">Principais Temas do Código de Defesa do Consumidor (CDC)</p>
-                         <p>Fique por dentro dos temas relevantes do CDC. Conheça seus direitos básicos, responsabilidades dos fornecedores, desafios digitais, superendividamento e proteção de dados.</p>
-                         <p class="news-source">
-                             Fonte: <a href="https://sennamartins.com.br/principais-temas-do-codigo-de-defesa-do-consumidor-em-2025/" target="_blank" rel="noopener noreferrer">Leia mais</a> - 21/05/2024
-                         </p>
+                    <div class="md:w-1/2 lg:w-3/5">
+                        <h3 class="news-section-title">Notícias</h3>
+                        <div class="text-left">
+                            <div class="news-item mb-6">
+                                <p class="news-item-title">Principais Temas do Código de Defesa do Consumidor (CDC)</p>
+                                <p>Fique por dentro dos temas relevantes do CDC. Conheça seus direitos básicos, responsabilidades dos fornecedores, desafios digitais, superendividamento e proteção de dados.</p>
+                                <p class="news-source">Fonte: <a href="https://sennamartins.com.br/principais-temas-do-codigo-de-defesa-do-consumidor-em-2025/" target="_blank" rel="noopener noreferrer">Leia mais</a> - 21/05/2024</p>
+                            </div>
+                            <div class="news-item mb-6">
+                                <p class="news-item-title">Revisão Cadastral do BPC (Benefício de Prestação Continuada)</p>
+                                <p>O INSS está revisando cadastros do BPC para garantir o pagamento a quem cumpre os requisitos. Mantenha seus dados atualizados para evitar suspensão. Fique atento às notificações (App, carta, SMS). Se precisar de ajuda, procure orientação especializada.</p>
+                                <p>A Gomberg&Associados pode te auxiliar.</p>
+                                <p class="news-source">Fonte: <a href="https://seucreditodigital.com.br/atualizacao-bpc-2025-beneficio-ativo/#google_vignette" target="_blank" rel="noopener noreferrer">Leia mais</a> - 21/05/2024</p>
+                            </div>
+                            <div class="news-item">
+                                <p class="news-item-title">Cartilha - Campanha Lava-Pés: Cuidados com os Pés Diabéticos</p>
+                                <p>A Campanha Lava-pés é uma iniciativa apoiada pelo Ministério da Saúde para promoção da saúde e educação popular em saúde, buscando orientar ações nos serviços e escolas de saúde.</p>
+                                <p class="news-source">Fonte: <a href="https://encurtador.com.br/euIZf" target="_blank" rel="noopener noreferrer">Acesse a Cartilha</a> - 21/05/2024</p>
+                            </div>
+                        </div>
                     </div>
-
-                     <!-- ===== INÍCIO Notícia 3: BPC ===== -->
-                    <div class="news-item">
-                         <p class="news-item-title">Revisão Cadastral do BPC (Benefício de Prestação Continuada)</p>
-                         <p>O INSS está revisando cadastros do BPC para garantir o pagamento a quem cumpre os requisitos (renda familiar e laudos médicos). É essencial manter os dados atualizados no Cadastro Único e Meu INSS para evitar suspensão ou cancelamento.</p>
-                         <p>Fique atento às notificações do INSS (App, carta, SMS, telefone). Se encontrar dificuldades ou tiver o benefício suspenso, procure orientação especializada. A Gomberg&Associados pode te auxiliar.</p>
-                         <p class="news-source">
-                             Fonte: <a href="https://seucreditodigital.com.br/atualizacao-bpc-2025-beneficio-ativo/#google_vignette" target="_blank" rel="noopener noreferrer">Leia mais</a> - 21/05/2024
-                         </p>
-                    </div>
-                    <!-- ===== FIM Notícia 3: BPC ===== -->
-
-                </div>
-            </div>
-            <!-- Coluna Direita: Imagem -->
-            <div class="md:w-1/2 lg:w-2/5 flex justify-center order-1 md:order-2">
-                 <img src="advogado-cartoon.png"
-                     alt="Ilustração Advogado Gomberg & Associados"
-                     class="max-w-[250px] sm:max-w-[300px] lg:max-w-[280px] xl:max-w-[320px] h-auto rounded-lg shadow-xl object-contain"
-                     onerror="this.style.display='none'; console.warn('Imagem não encontrada em: ' + this.src)">
+                 </div>
             </div>
         </div>
     </section>
 
     <!-- Seção Áreas de Atuação -->
     <section class="py-12 px-4 bg-white">
-          <!-- ... (Código Áreas de Atuação Omitido) ... -->
+          <!-- ... (Código Áreas de Atuação Omitido - Sem alterações) ... -->
            <div class="container mx-auto">
             <h2 class="text-3xl font-bold mb-10 text-center rainbow-text">Áreas de Atuação</h2>
             <div class="area-container mt-8">
@@ -240,21 +227,46 @@
     </section>
 
     <!-- Modais -->
-     <!-- ... (Código Modais Omitido) ... -->
-      <div id="aboutModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('aboutModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2> <p class="text-gray-700 leading-relaxed text-sm">Referência em advocacia especializada, defendemos seus direitos com excelência há mais de 3 anos. Nossa equipe qualificada oferece soluções jurídicas eficientes, personalizadas e éticas, combinando tradição e inovação para os melhores resultados com abordagem estratégica e humanizada.</p> </div> </div>
+    <!-- ... (Código Modais Omitido - Sem alterações) ... -->
+     <div id="aboutModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('aboutModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2> <p class="text-gray-700 leading-relaxed text-sm">Referência em advocacia especializada, defendemos seus direitos com excelência há mais de 3 anos. Nossa equipe qualificada oferece soluções jurídicas eficientes, personalizadas e éticas, combinando tradição e inovação para os melhores resultados com abordagem estratégica e humanizada.</p> </div> </div>
     <div id="specialtiesModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('specialtiesModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2> <p class="mb-6 text-gray-600 text-sm">Atuação abrangente, incluindo:</p> <div class="grid grid-cols-2 md:grid-cols-3 gap-3"> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Civil/Família</h3><ul class="list-disc pl-4 space-y-0.5"><li>Divórcio</li><li>Pensão</li><li>Contratos</li><li>Indenizações</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Trabalhista</h3><ul class="list-disc pl-4 space-y-0.5"><li>Reclamações</li><li>Defesas</li><li>Rescisão</li><li>Assédio</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Penal</h3><ul class="list-disc pl-4 space-y-0.5"><li>Defesa Criminal</li><li>Audiências/Júri</li><li>Execução</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Previdenciário</h3><ul class="list-disc pl-4 space-y-0.5"><li>BPC/Auxílios</li><li>Aposentadorias</li><li>Revisões</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Médico/Saúde</h3><ul class="list-disc pl-4 space-y-0.5"><li>Planos Saúde</li><li>Tratamentos</li><li>Erro Médico</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Consumidor</h3><ul class="list-disc pl-4 space-y-0.5"><li>Juros Abusivos</li><li>Contratos</li><li>Negativação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Extrajudicial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Inventário/Divórcio</li><li>Mediação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Empresarial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Societário</li><li>Compliance</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Condominial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Assembleias</li><li>Cobranças</li><li>Regimentos</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Outras</h3><ul class="list-disc pl-4 space-y-0.5"><li>Consulte-nos</li></ul></div> </div></div></div>
     <div id="contactModal" class="modal"> <div class="modal-content"><span class="close" onclick="closeModal('contactModal')">×</span> <h2 class="text-2xl font-bold mb-3 text-center rainbow-text">Fale com Advogados</h2> <p class="form-description">Para receber um atendimento personalizado em seu WhatsApp, preencha o formulário abaixo. Atendimento Imediato!</p> <form id="contactForm"> <div> <label for="formName">Nome completo:</label> <input type="text" id="formName" name="name" placeholder="Seu nome completo" required> </div> <div> <label for="formEmail">E-mail:</label> <input type="email" id="formEmail" name="email" placeholder="Seu melhor e-mail" required> </div> <div> <label for="formWhatsapp">Número de WhatsApp (com DDD):</label> <input type="tel" id="formWhatsapp" name="whatsapp" placeholder="Exemplo: 11912345678" required pattern="[0-9]{10,11}" title="Digite apenas números, incluindo o DDD (10 ou 11 dígitos)"> </div> <div class="privacy-container"> <input type="checkbox" id="formPrivacy" name="privacy" required> <label for="formPrivacy" class="privacy-label">De acordo com a lei 12.965/2014 e 13.709/2018, autorizo este site enviar comunicações por e-mail ou qualquer outro meio e concordo com a sua <a href="#" target="_blank" class="underline text-blue-600 hover:text-blue-800">política de privacidade</a>.</label> </div> <button type="submit">Enviar para WhatsApp</button> </form> </div> </div>
     <div id="teamModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('teamModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossa Equipe</h2> <div class="team-member"> <h3>Dr. Luiz Roberto Ribeiro Gomberg</h3> <span class="oab">OAB/SP 477.614</span> <p>Esp. em Direito Civil, Trabalhista, Penal, Militar, Constitucional, Médico, Consumidor, Previdenciário, Empresarial, Condominial. Atua em mediação, conflitos, advocacia extrajudicial, defesa executado, execuções.</p> </div> <div class="team-member"> <h3>Drª. Sara Ribeiro Gomberg</h3> <span class="oab">OAB/SP 409.398</span> <p>Esp. em Direito Civil, Direito do Trabalho e Direito Criminal.</p></div></div></div>
     <div id="socialModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('socialModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Redes Sociais</h2> <div class="social-links"><a href="https://www.facebook.com/luiz.roberto.ribeiro.gomberg.67768" target="_blank" rel="noopener noreferrer" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a><a href="https://www.instagram.com/gomberg2023.adv/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a href="https://x.com/lui18179" target="_blank" rel="noopener noreferrer" class="twitter"><i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span></a></div></div></div>
 
+     <!-- ===== NOVO MODAL DE LOCALIZAÇÃO ===== -->
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+             <span class="close" onclick="closeModal('locationModal')">×</span>
+             <!-- Iframe do Google Maps Embed -->
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.872906454205!2d-46.68298812465774!3d-23.50187397884169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce580325833679%3A0x867763f639e64928!2sRua%20Manoel%20de%20Andrade%2C%20209%20-%20Vila%20Baruel%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002520-020!5e0!3m2!1spt-BR!2sbr!4v1716325733154!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+             <!-- Link opcional para abrir no Google Maps -->
+             <div class="text-center mt-3">
+                 <a href="https://maps.app.goo.gl/XZWMS4akK6mLcPWz6" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-sm underline">
+                    Abrir no Google Maps
+                 </a>
+             </div>
+        </div>
+    </div>
+    <!-- ===== FIM DO MODAL DE LOCALIZAÇÃO ===== -->
 
-    <!-- Footer -->
+    <!-- Footer Ajustado -->
     <footer class="bg-black text-white py-6 md:py-8 px-4">
-        <!-- ... (Código Footer Omitido) ... -->
-         <div class="container mx-auto">
-             <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0 text-center md:text-left"><div class="flex items-center justify-center md:justify-start"><div class="header-logo-circle w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center mr-2 md:mr-3"><span class="text-black font-bold text-sm md:text-base">G&A</span></div><h3 class="text-lg md:text-xl font-bold rainbow-text">Gomberg&Associados</h3></div><p class="mt-1 text-gray-400 text-xs">Excelência jurídica desde 2022</p></div>
-                 <div class="flex space-x-3 md:space-x-4"> <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="rainbow-button p-2 md:p-3 rounded-full" title="WhatsApp"><i class="fab fa-whatsapp text-base md:text-lg"></i></a> <a href="mailto:gomberg2010@hotmail.com" class="rainbow-button p-2 md:p-3 rounded-full" title="E-mail"><i class="fas fa-envelope text-base md:text-lg"></i></a></div>
+        <div class="container mx-auto">
+             <div class="flex flex-col md:flex-row justify-center md:justify-between items-center">
+                <div class="footer-logo-section">
+                    <div class="flex items-center">
+                        <div class="header-logo-circle w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center mr-2 md:mr-3"><span class="text-black font-bold text-sm md:text-base">G&A</span></div>
+                        <h3 class="text-lg md:text-xl font-bold rainbow-text">Gomberg&Associados</h3>
+                    </div>
+                    <p class="mt-1 text-gray-400 text-xs md:ml-12">Excelência jurídica desde 2022</p>
+                </div>
+                 <div class="footer-icons-section mt-4 md:mt-0">
+                     <div class="flex space-x-3 md:space-x-4">
+                         <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="rainbow-button p-2 md:p-3 rounded-full" title="WhatsApp"><i class="fab fa-whatsapp text-base md:text-lg"></i></a>
+                         <a href="mailto:gomberg2010@hotmail.com" class="rainbow-button p-2 md:p-3 rounded-full" title="E-mail"><i class="fas fa-envelope text-base md:text-lg"></i></a>
+                     </div>
+                 </div>
              </div>
              <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400 text-xs">
                 <p>© 2024 Gomberg&Associados - Todos os direitos reservados.</p>
@@ -268,13 +280,29 @@
                     <li><a href="https://www.planalto.gov.br/ccivil_03/Leis/2003/L10.741.htm" target="_blank" rel="noopener noreferrer">ESTATUTO DA PESSOA IDOSA</a></li>
                 </ul>
             </div>
+
+             <!-- Contador de Visitas e Localização (Link agora abre Modal) -->
+             <div class="footer-bottom-info">
+                 <span class="footer-counter-wrapper rainbow-button">
+                    <a href='https://www.free-counters.org/'> Contador De Visitas</a>
+                    <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=a700829a39034f16f5198d237914602b4533bd9a'></script>
+                    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1181760/t/0"></script>
+                 </span>
+                 <div class="footer-location">
+                    <!-- Link modificado para abrir o modal -->
+                    <a onclick="openModal('locationModal')">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Localização</span>
+                    </a>
+                 </div>
+             </div>
         </div>
     </footer>
 
     <!-- JavaScript -->
     <script>
-        // ... (Código JavaScript Omitido) ...
-          function openModal(modalId) { const modal = document.getElementById(modalId); if (modal) { document.querySelectorAll(".modal").forEach(otherModal => { if (otherModal.style.display === "block" && otherModal.id !== modalId) { closeModal(otherModal.id); } }); modal.style.display = "block"; document.body.style.overflow = "hidden"; } else { console.error("Modal not found:", modalId); } }
+         // ... (Código JavaScript Omitido - Sem alterações, pois openModal/closeModal já existem) ...
+         function openModal(modalId) { const modal = document.getElementById(modalId); if (modal) { document.querySelectorAll(".modal").forEach(otherModal => { if (otherModal.style.display === "block" && otherModal.id !== modalId) { closeModal(otherModal.id); } }); modal.style.display = "block"; document.body.style.overflow = "hidden"; } else { console.error("Modal not found:", modalId); } }
         function closeModal(modalId) { const modal = document.getElementById(modalId); if (modal) { modal.style.display = "none"; if (!document.querySelector('.modal[style*="display: block"]')) { document.body.style.overflow = "auto"; } } }
         window.addEventListener("click", function(event) { document.querySelectorAll(".modal").forEach(modal => { if (event.target == modal) { closeModal(modal.id); } }); });
         window.addEventListener("keydown", function(event) { if (event.key === "Escape") { document.querySelectorAll('.modal[style*="display: block"]').forEach(modal => { closeModal(modal.id); }); } });
@@ -286,4 +314,3 @@
 
 </body>
 </html>
-      
