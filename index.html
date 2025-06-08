@@ -2,314 +2,198 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <title>Gomberg&Associados | Advocacia Especializada em SP</title>
+    <meta name="description" content="Advogado especialista em Direito Civil, Penal, Trabalhista, Previdenciário e do Consumidor em São Paulo e Igaratá. Atuamos com pensão, divórcio, defesa criminal, BPC/LOAS e mais.">
+    <meta name="keywords" content="advogado, gomberg, igaratá, direito de família, advogado criminalista, advogado trabalhista, bpc loas, direito do consumidor, oab sp, assessoria jurídica, violência doméstica, medida protetiva, defesa do executado">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=2">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=2">
+    <link rel="manifest" href="site.webmanifest?v=2">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gomberg&Associados - Escritório de Advocacia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Estilos CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* ... (Estilos CSS Omitidos por Brevidade - Iguais à versão anterior, incluindo os ajustes para footer-logo-section, footer-icons-section e footer-counter-wrapper) ... */
-         /* Estilos Base */
+        /* CSS Final e Completo */
+        :root {
+            --bg-color: #0d0d0d; --text-color: #f5f5f5; --header-text-color: #FFFFFF; --section-bg-color: rgba(15, 15, 15, 0.85); --card-bg-color: rgba(30, 30, 30, 0.9); --footer-bg-color: rgba(10, 10, 10, 0.9); --button-bg-color: #D4AF37; --button-text-color: #0d0d0d; --copyright-color: #888; --icon-color: #D4AF37; --bg-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('https://images.pexels.com/photos/1045299/pexels-photo-1045299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        }
+        body.light-mode {
+            --bg-color: #f0f0f0; --text-color: #1c1c1c; --header-text-color: #000000; --section-bg-color: rgba(255, 255, 255, 0.85); --card-bg-color: #ffffff; --footer-bg-color: rgba(245, 245, 245, 0.9); --button-bg-color: #8c732a; --button-text-color: #ffffff; --copyright-color: #555; --icon-color: #8c732a; --bg-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.85)), url('https://images.pexels.com/photos/1045299/pexels-photo-1045299.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+        }
         html { scroll-behavior: smooth; }
-        body { font-family: sans-serif; }
-        .gold-bg { background-color: #D4AF37; }
-
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(3px); }
-        .modal-content { background-color: #fefefe; margin: 5% auto; padding: 25px 30px 30px 30px; border: none; width: 90%; max-width: 600px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); position: relative; }
-        /* Ajuste específico para o modal do mapa */
-        #locationModal .modal-content { max-width: 750px; /* Mais largo para o mapa */ padding: 15px; /* Menos padding para dar espaço ao mapa */ }
-        #locationModal iframe { border:0; width: 100%; display: block; } /* Estilo para o iframe do mapa */
-        .close { color: #888; position: absolute; right: 12px; top: 8px; font-size: 28px; font-weight: bold; cursor: pointer; line-height: 1; transition: color 0.2s ease; padding: 5px; z-index: 110; /* Garante que fique sobre o mapa */ }
-        .close:hover { color: #333; }
-
-        /* --- ESTILO RAINBOW FUNCIONAL --- */
-        @keyframes rainbow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .rainbow-button { display: inline-block; padding: 0.6rem 1rem; font-weight: bold; color: white !important; border: none; border-radius: 0.375rem; background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); background-size: 400% 400%; animation: rainbow 5s ease infinite; cursor: pointer; text-align: center; white-space: nowrap; text-decoration: none; transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, opacity 0.15s; }
-        .rainbow-button:hover { transform: scale(1.03); box-shadow: 0 5px 12px rgba(0,0,0,0.2); opacity: 0.95; }
-        .hero-button { padding: 0.7rem 1.4rem; }
-        .nav-button-small { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
-        .rainbow-text { background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #ee82ee); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: bold; animation: rainbow 5s ease infinite; background-size: 400% 400%; }
-
-        /* Efeito Hover Logo */
-        .header-logo-circle { transition: transform 0.2s ease-out; cursor: default; }
-        .header-logo-circle:hover { transform: scale(1.05); }
-
-        /* Conteúdo Áreas */
-        .area-content { margin-top: 0.75rem; padding: 1.25rem; background-color: #F9FAFB; border-radius: 0.5rem; box-shadow: inset 0 1px 3px 0 rgba(0, 0, 0, 0.07); text-align: left; border: 1px solid #e5e7eb; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out, visibility 0s linear 0.5s; max-height: 0px; overflow: hidden; opacity: 0; width: 100%; visibility: hidden; }
-        .area-content:not(.hidden) { max-height: 1500px; opacity: 1; visibility: visible; transition: max-height 0.5s ease-in-out, opacity 0.4s ease-in-out 0.1s, visibility 0s linear 0s; }
-        .area-container { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: 1.5rem; }
-        @media (min-width: 640px) { .area-container { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-        @media (min-width: 1024px) { .area-container { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-        @media (min-width: 1280px) { .area-container { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-        .area-container > div { display: flex; flex-direction: column; align-items: center; width: 100%; }
-        .area-container .rainbow-button { margin-bottom: 0.5rem; width: 90%; max-width: 300px; }
-        .area-content h4 { font-size: 1.125rem; font-weight: bold; margin-bottom: 0.75rem; }
-        .area-content p, .area-content li { line-height: 1.5; color: #374151; font-size: 0.875rem; }
-        .area-content ul { list-style: disc; padding-left: 1.25rem; margin-top: 0.5rem; margin-bottom: 0.75rem; }
-        .area-content strong { color: #1f2937; font-weight: 600; }
-        .area-content .contact-info-text { margin-top: 1rem; font-size: 0.875rem; color: #4b5563; font-style: italic; }
-
-        /* Modal Equipe */
-        .team-member { margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid #eee; }
-        .team-member:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .team-member h3 { font-size: 1.05rem; font-weight: bold; color: #1f2937; margin-bottom: 0.25rem; }
-        .team-member .oab { font-size: 0.75rem; color: #6b7280; margin-bottom: 0.4rem; display: block; }
-        .team-member p { font-size: 0.85rem; color: #4b5563; line-height: 1.5; }
-
-        /* Modal Redes Sociais */
-        .social-links a { display: flex; align-items: center; padding: 0.7rem 1rem; margin-bottom: 0.6rem; border-radius: 0.375rem; background-color: #f3f4f6; transition: background-color 0.2s ease-out, transform 0.2s ease-out; text-decoration: none; color: #374151; font-weight: 500; }
-        .social-links a:hover { background-color: #e5e7eb; transform: translateX(4px); }
-        .social-links i { font-size: 1.3rem; margin-right: 0.8rem; width: 25px; text-align: center; }
-        .social-links a.facebook i { color: #1877F2; } .social-links a.instagram i { color: #E4405F; } .social-links a.twitter i { color: #000000; }
-
-        /* Estilos para Links Importantes (Hero Section) */
-        .important-links-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: #1f2937; }
-        .important-links-list { list-style: none; padding-left: 0; margin: 0; }
-        .important-links-list li { margin-bottom: 0.3rem; }
-        .important-links-list a { font-size: 0.875rem; color: #374151; text-decoration: none; transition: color 0.2s ease; }
-        .important-links-list a:hover { color: #000000; text-decoration: underline; }
-
-        /* Estilos para Seção Notícias (Hero Section) */
-        .news-section-title { font-size: 1rem; font-weight: 600; margin-bottom: 0.75rem; color: #1f2937; }
-        .news-item { margin-bottom: 1.5rem; }
-        .news-item:last-child { margin-bottom: 0; }
-        .news-item-title { font-size: 0.875rem; font-weight: bold; color: #1f2937; margin-bottom: 0.25rem; }
-        .news-item p { font-size: 0.875rem; color: #374151; line-height: 1.5; margin-bottom: 0.5rem; }
-        .news-source { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
-        .news-source a { color: #2563eb; text-decoration: underline; transition: color 0.2s; }
-        .news-source a:hover { color: #1d4ed8; }
-
-        /* Estilos para Links Legais (Footer) */
-        .footer-legal-links { margin-top: 1rem; text-align: center; }
-        .footer-legal-links ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 1.5rem; }
-        .footer-legal-links a { font-size: 0.75rem; color: #9ca3af; text-decoration: none; transition: color 0.2s ease; }
-        .footer-legal-links a:hover { color: #ffffff; text-decoration: underline; }
-
-        /* Estilos Formulário Contato */
-        #contactForm label { display: block; margin-bottom: 0.25rem; font-size: 0.875rem; font-weight: 500; color: #374151; }
-        #contactForm input[type="text"],
-        #contactForm input[type="email"],
-        #contactForm input[type="tel"] { width: 100%; padding: 0.6rem 0.8rem; border: 1px solid #d1d5db; border-radius: 0.375rem; margin-bottom: 1rem; font-size: 0.875rem; background-color: #f9fafb; }
-        #contactForm input[type="checkbox"] { margin-right: 0.5rem; vertical-align: middle; }
-        #contactForm .privacy-label { font-size: 0.75rem; color: #6b7280; display: inline; vertical-align: middle; }
-        #contactForm .privacy-container { margin-top: 0.5rem; margin-bottom: 1rem; }
-        #contactForm button[type="submit"] { display: inline-block; padding: 0.7rem 1.5rem; background-color: #D4AF37; color: black; font-weight: bold; border: none; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease; width: 100%; }
-        #contactForm button[type="submit"]:hover { background-color: #c8a031; transform: scale(1.02); }
-        #contactForm .form-description { font-size: 0.9rem; color: #4b5563; margin-bottom: 1.5rem; text-align: center; }
-
-        /* Estilo para o Contador e Localização no Footer */
-        .footer-bottom-info { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem 2rem; margin-top: 1.5rem; }
-        .footer-counter-wrapper { display: inline-block; vertical-align: middle; }
-        .footer-counter-wrapper .rainbow-button { padding: 0.3rem 0.6rem; font-size: 0.75rem; line-height: 1; }
-        .footer-counter-wrapper a, .footer-counter-wrapper span { color: white !important; text-decoration: none !important; font-weight: normal; }
-        .footer-counter-wrapper img { border: 0; vertical-align: middle; max-height: 20px; width: auto; }
-        .footer-location a { font-size: 0.75rem; color: #9ca3af; text-decoration: none; display: flex; align-items: center; gap: 0.25rem; transition: color 0.2s ease; cursor: pointer; /* Mudado de link direto para cursor pointer */ }
-        .footer-location a:hover { color: #ffffff; text-decoration: underline; }
-        .footer-location i { font-size: 0.85rem; }
-
-        /* Ajuste logo/ícones footer */
-        .footer-logo-section { display: flex; align-items: center; justify-content: center; text-align: center; width: 100%; margin-bottom: 1rem; }
-        .footer-icons-section { display: flex; justify-content: center; width: 100%; }
-         @media (min-width: 768px) { .footer-logo-section { width: auto; justify-content: flex-start; text-align: left; margin-bottom: 0; } .footer-icons-section { width: auto; justify-content: flex-end; } }
-
+        body { margin: 0; font-family: 'Montserrat', sans-serif; background-color: var(--bg-color); color: var(--text-color); background-image: var(--bg-image); background-size: cover; background-position: center; background-attachment: fixed; transition: background-color 0.4s, color 0.4s; }
+        header { background-color: rgba(10, 10, 10, 0.5); backdrop-filter: blur(8px); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 90%; top: 0; z-index: 1000; }
+        .logo-title { font-family: 'Cinzel', serif; font-size: 1.8rem; color: #fff; text-decoration: none; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex-wrap: wrap; }
+        nav li { margin-left: 20px; }
+        nav a { color: #fff; text-decoration: none; font-weight: 600; font-size: 0.9rem; padding-bottom: 5px; border-bottom: 2px solid transparent; transition: border-color 0.3s; }
+        nav a:hover { border-color: var(--button-bg-color); }
+        #theme-toggle { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
+        #home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+        #home h1 { font-family: 'Cinzel', serif; color: var(--header-text-color); font-size: 4.5rem; margin: 0; text-shadow: 0 0 20px rgba(255, 255, 255, 0.4); }
+        #home p { font-size: 1.3rem; text-transform: uppercase; letter-spacing: 3px; margin-top: 10px; }
+        .content-section { background-color: var(--section-bg-color); padding: 80px 10%; backdrop-filter: blur(5px); }
+        .section-title { font-family: 'Cinzel', serif; font-size: 2.5rem; text-align: center; margin-bottom: 50px; border-bottom: 2px solid var(--button-bg-color); padding-bottom: 10px; display: inline-block; }
+        .title-wrapper { text-align: center; }
+        .areas-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .area-card { background-color: var(--card-bg-color); padding: 30px; border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.3); display: flex; flex-direction: column; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+        .area-card:hover { transform: translateY(-10px); box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
+        .area-card .icon { fill: var(--icon-color); width: 50px; height: 50px; margin-bottom: 20px; }
+        .area-card h3 { font-family: 'Cinzel', serif; color: var(--button-bg-color); margin-top: 0; font-size: 1.5rem; }
+        .area-card p { flex-grow: 1; text-align: left; font-size: 0.95rem; line-height: 1.6; }
+        #sobre { display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .advogado-foto { max-width: 300px; width: 100%; border-radius: 8px; border: 4px solid var(--button-bg-color); object-fit: cover; }
+        .advogado-texto { max-width: 600px; }
+        .advogado-texto h2 { font-family: 'Cinzel', serif; font-size: 2rem; }
+        .advogado-texto p { line-height: 1.8; margin-bottom: 1em; }
+        .videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+        .video-card { background-color: var(--card-bg-color); padding: 20px; border-radius: 8px; border: 1px solid rgba(212, 175, 55, 0.3); text-align: center; }
+        .video-card video { width: 100%; border-radius: 6px; }
+        .video-card h3 { font-family: 'Cinzel', serif; color: var(--text-color); margin-top: 15px; font-size: 1.2rem; }
+        #blog .blog-post { display: flex; flex-direction: column; align-items: center; gap: 30px; background-color: var(--card-bg-color); padding: 40px; border-radius: 8px; margin-bottom: 40px; }
+        .blog-post-image { max-width: 400px; width: 100%; border-radius: 8px; }
+        .blog-post-content { max-width: 800px; text-align: left; }
+        .blog-post-content h3 { font-family: 'Cinzel', serif; color: var(--button-bg-color); font-size: 1.8rem; margin-top: 0; text-align: center; }
+        .blog-post-content p { line-height: 1.8; text-align: justify; }
+        #testimonials .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        #testimonials .testimonial-card { background-color: var(--card-bg-color); padding: 35px; border-radius: 8px; border-left: 5px solid var(--button-bg-color); }
+        #testimonials .testimonial-text { font-style: italic; position: relative; margin: 0; padding-left: 20px; }
+        #testimonials .testimonial-text::before { content: '“'; font-family: 'Cinzel', serif; font-size: 3rem; color: var(--button-bg-color); position: absolute; left: -15px; top: -10px; opacity: 0.8; }
+        #testimonials .testimonial-author { text-align: right; margin-top: 20px; font-weight: 600; color: var(--text-color); }
+        #ebook-section .ebook-container { display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        #ebook-section .ebook-cover { max-width: 280px; width: 100%; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        #ebook-section .ebook-form-wrapper { max-width: 500px; text-align: left; }
+        #ebook-section h3 { font-family: 'Cinzel', serif; color: var(--button-bg-color); font-size: 1.8rem; margin-top: 0; }
+        #ebook-section #brevo-form-container { margin-top: 20px; background-color: transparent !important; }
+        #faq .faq-container { max-width: 800px; margin: 0 auto; }
+        #faq .faq-item { border-bottom: 1px solid rgba(212, 175, 55, 0.2); padding: 25px 0; }
+        #faq .faq-item:last-child { border-bottom: none; }
+        #faq .faq-item h3 { font-family: 'Cinzel', serif; color: var(--button-bg-color); margin-top: 0; font-size: 1.3rem; margin-bottom: 10px; }
+        #faq .faq-item p { margin-bottom: 0; line-height: 1.7; }
+        #location .map-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 8px; border: 2px solid var(--button-bg-color); }
+        #location .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        #location .address { text-align: center; margin-top: 25px; font-size: 1.1rem; }
+        #location .address a { color: var(--button-bg-color); font-weight: 600; text-decoration: none; }
+        #location .address a:hover { text-decoration: underline; }
+        #contact-form { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 25px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group.full-width { grid-column: 1 / -1; }
+        .form-group label { margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group textarea { background-color: rgba(0,0,0,0.2); border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 5px; padding: 15px; color: var(--text-color); font-family: 'Montserrat', sans-serif; font-size: 1rem; transition: border-color 0.3s, box-shadow 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--button-bg-color); box-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+        .form-group textarea { resize: vertical; min-height: 150px; }
+        #form-submit-btn { background-color: var(--button-bg-color); color: var(--button-text-color); border: none; padding: 18px; font-size: 1.2rem; font-weight: bold; cursor: pointer; border-radius: 5px; transition: transform 0.2s, background-color 0.3s; }
+        #form-submit-btn:hover { background-color: #e9c46a; transform: scale(1.02); }
+        #submission-choice { display: none; text-align: center; }
+        #submission-choice p { font-size: 1.2rem; margin-bottom: 25px; }
+        .choice-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .choice-buttons a { background-color: var(--button-bg-color); color: var(--button-text-color); text-decoration: none; padding: 15px 30px; border-radius: 5px; font-weight: bold; transition: transform 0.2s; display: flex; align-items: center; gap: 10px; }
+        .choice-buttons a:hover { transform: scale(1.05); }
+        footer { background-color: var(--footer-bg-color); padding: 30px 20px; text-align: center; }
+        .lawyer-info p { margin: 4px 0; font-weight: 600; color: var(--text-color); }
+        .footer-socials { margin-top: 25px; }
+        .footer-socials h3 { font-family: 'Cinzel', serif; color: var(--text-color); font-size: 1.2rem; margin-bottom: 15px; }
+        .footer-socials-links { display: flex; justify-content: center; align-items: center; gap: 25px; }
+        .footer-socials-links a { color: var(--text-color); text-decoration: none; transition: color 0.3s, transform 0.3s; }
+        .footer-socials-links a:hover { color: var(--button-bg-color); transform: scale(1.1); }
+        .footer-socials-links .social-icon { width: 28px; height: 28px; fill: currentColor; }
+        .copyright { margin-top: 25px; font-size: 0.9em; color: var(--copyright-color); }
+        .floating-btn { position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; background-color: #25D366; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-decoration: none; box-shadow: 2px 2px 10px rgba(0,0,0,0.3); z-index: 1001; transition: transform 0.2s; }
+        .floating-btn:hover { transform: scale(1.1); }
+        #back-to-top { background-color: var(--button-bg-color); color: var(--button-text-color); bottom: 95px; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+        #back-to-top.visible { opacity: 1; visibility: visible; }
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .animate-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+        @media (max-width: 850px) { header { flex-direction: column; padding: 10px; } nav ul { margin-top: 10px; flex-wrap: wrap; justify-content: center; } nav li { margin: 5px 10px; } #home h1 { font-size: 2.8rem; } #home p { font-size: 1rem; } .section-title { font-size: 2rem; } #sobre, #ebook-section .ebook-container { flex-direction: column-reverse; gap: 30px;} #contact-form { grid-template-columns: 1fr; } .videos-grid, .testimonials-grid { grid-template-columns: 1fr; } .blog-post {flex-direction: column;} }
     </style>
 </head>
-<body class="gold-bg text-black font-sans">
-    <!-- Header Centralizado e com Efeito -->
-    <header class="gold-bg shadow-md sticky top-0 z-50">
-         <div class="container mx-auto px-4 py-3 flex justify-center items-center">
-            <div class="flex items-center">
-                <div class="header-logo-circle w-11 h-11 md:w-14 md:h-14 bg-black rounded-full flex items-center justify-center mr-3 md:mr-4">
-                    <span class="text-white font-bold text-lg md:text-2xl">G&A</span>
-                </div>
-                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold whitespace-nowrap rainbow-text">Gomberg&Associados</h1>
-            </div>
-        </div>
+<body class="dark-mode">
+
+    <header>
+        <a href="#home" class="logo-title">G&A</a>
+        <nav>
+            <ul>
+                <li><a href="#home">Início</a></li>
+                <li><a href="#areas">Áreas</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#videos">Vídeos</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#testimonials">Depoimentos</a></li>
+                <li><a href="#ebook-section">E-book</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#location">Localização</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><button id="theme-toggle">🌙</button></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Hero Section com Botões Movidos -->
-    <section class="py-10 md:py-12 px-4 gold-bg">
-         <!-- ... (Código Hero Section Omitido - Sem alterações na estrutura, apenas reordenação de notícias) ... -->
-         <div class="container mx-auto flex flex-col items-center justify-center gap-8 md:gap-12">
-            <div class="text-center w-full order-1">
-                <h2 class="text-3xl lg:text-4xl font-bold mb-4 text-black">
-                    <span class="rainbow-text">Excelência Jurídica</span> <span class="block sm:inline">ao Seu Alcance</span>
-                </h2>
-                <p class="text-base lg:text-lg mb-8 text-gray-900">Defendendo seus direitos com expertise e comprometimento.</p>
-                <div class="flex flex-wrap gap-3 justify-center mb-10">
-                     <button type="button" onclick="openModal('contactModal')" class="rainbow-button hero-button font-bold">Fale Conosco</button>
-                     <button type="button" onclick="openModal('aboutModal')" class="rainbow-button nav-button-small flex-shrink-0">Sobre Nós</button>
-                     <button type="button" onclick="openModal('specialtiesModal')" class="rainbow-button nav-button-small flex-shrink-0">Especialidades</button>
-                     <button type="button" onclick="openModal('socialModal')" class="rainbow-button nav-button-small flex-shrink-0">Redes Sociais</button>
-                     <button type="button" onclick="openModal('teamModal')" class="rainbow-button nav-button-small flex-shrink-0">Nossa Equipe</button>
-                </div>
-                 <div class="md:flex md:gap-12 justify-center">
-                    <div class="mb-8 md:mb-0 md:w-1/2 lg:w-2/5">
-                        <h3 class="important-links-title">LINKS IMPORTANTES</h3>
-                        <ul class="important-links-list text-left">
-                            <li><a href="https://www.delegaciaeletronica.policiacivil.sp.gov.br/ssp-de-cidadao/home" target="_blank" rel="noopener noreferrer">Delegacia eletrônica da Policia Civil</a></li>
-                            <li><a href="https://www.policiamilitar.sp.gov.br/" target="_blank" rel="noopener noreferrer">Polícia Militar</a></li>
-                            <li><a href="https://www.corpodebombeiros.sp.gov.br/#/" target="_blank" rel="noopener noreferrer">Corpo de Bombeiros</a></li>
-                            <li><a href="https://www.policiacivil.sp.gov.br/portal/faces/pages_home?_afrLoop=1731010598993019&_afrWindowMode=0&_afrWindowId=null#!%40%40%3F_afrWindowId%3Dnull%26_afrLoop%3D1731010598993019%26_afrWindowMode%3D0%26_adf.ctrl-state%3Dcuhx27vh1_4" target="_blank" rel="noopener noreferrer">Policia Civil</a></li>
-                            <li><a href="https://www.mpsp.mp.br/" target="_blank" rel="noopener noreferrer">Ministério Público do estado de são paulo</a></li>
-                            <li><a href="https://www.tjsp.jus.br/" target="_blank" rel="noopener noreferrer">Tribunal de justiça do estado de são paulo</a></li>
-                            <li><a href="https://digitei.com/boletim-de-ocorrencia-online-na-delegacia-do-idoso-como-fazer/#google_vignette" target="_blank" rel="noopener noreferrer">Delegacia do Idoso</a></li>
-                        </ul>
-                    </div>
-                    <div class="md:w-1/2 lg:w-3/5">
-                        <h3 class="news-section-title">Notícias</h3>
-                        <div class="text-left">
-                            <div class="news-item mb-6">
-                                <p class="news-item-title">Principais Temas do Código de Defesa do Consumidor (CDC)</p>
-                                <p>Fique por dentro dos temas relevantes do CDC. Conheça seus direitos básicos, responsabilidades dos fornecedores, desafios digitais, superendividamento e proteção de dados.</p>
-                                <p class="news-source">Fonte: <a href="https://sennamartins.com.br/principais-temas-do-codigo-de-defesa-do-consumidor-em-2025/" target="_blank" rel="noopener noreferrer">Leia mais</a> - 21/05/2024</p>
-                            </div>
-                            <div class="news-item mb-6">
-                                <p class="news-item-title">Revisão Cadastral do BPC (Benefício de Prestação Continuada)</p>
-                                <p>O INSS está revisando cadastros do BPC para garantir o pagamento a quem cumpre os requisitos. Mantenha seus dados atualizados para evitar suspensão. Fique atento às notificações (App, carta, SMS). Se precisar de ajuda, procure orientação especializada.</p>
-                                <p>A Gomberg&Associados pode te auxiliar.</p>
-                                <p class="news-source">Fonte: <a href="https://seucreditodigital.com.br/atualizacao-bpc-2025-beneficio-ativo/#google_vignette" target="_blank" rel="noopener noreferrer">Leia mais</a> - 21/05/2024</p>
-                            </div>
-                            <div class="news-item">
-                                <p class="news-item-title">Cartilha - Campanha Lava-Pés: Cuidados com os Pés Diabéticos</p>
-                                <p>A Campanha Lava-pés é uma iniciativa apoiada pelo Ministério da Saúde para promoção da saúde e educação popular em saúde, buscando orientar ações nos serviços e escolas de saúde.</p>
-                                <p class="news-source">Fonte: <a href="https://encurtador.com.br/euIZf" target="_blank" rel="noopener noreferrer">Acesse a Cartilha</a> - 21/05/2024</p>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
+    <main>
+        <!-- Conteúdo HTML do body -->
+        <section id="home"> <h1 class="animate-on-scroll">GOMBERG&ASSOCIADOS</h1> <p class="animate-on-scroll">ASSESSORIA JURÍDICA ESPECIALIZADA</p> </section>
+        <section id="areas" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Áreas de Atuação</h2></div> <div class="areas-grid"> <div class="area-card animate-on-scroll"><svg class="icon" viewBox="0 0 24 24"><path d="M12.75 11.5V6.5H11.25V11.5H6.25V13H11.25V18H12.75V13H17.75V11.5Z M12 2C11.04 2 10.1 2.22 9.23 2.65L3.58 5.47C3.12 5.71 2.75 6.18 2.75 6.73V11.33C2.75 16.26 6.31 20.84 11.64 21.94C11.76 21.98 11.88 22 12 22C12.12 22 12.24 21.98 12.36 21.94C17.69 20.84 21.25 16.26 21.25 11.33V6.73C21.25 6.18 20.88 5.71 20.42 5.47L14.77 2.65C13.9 2.22 12.96 2 12 2Z"/></svg><h3>Direito Civil</h3><p>Atuação especializada em Direito de Família e Obrigações, incluindo: pensão alimentícia, definição de guarda e regime de visitas, divórcio consensual e litigioso, partilha de bens, ações de cobrança em geral e defesa do devedor.</p></div> <div class="area-card animate-on-scroll"><svg class="icon" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M10.6,16.2L7.4,13L8.8,11.6L10.6,13.4L15.2,8.8L16.6,10.2L10.6,16.2Z" /></svg><h3>Direito Penal</h3><p>Defesa completa na esfera criminal, com acompanhamento em delegacias desde o flagrante, elaboração de defesas em todas as fases do processo, acompanhamento em audiências de custódia e instrução, e negociação em acordos de não persecução penal (ANPP).</p></div> <div class="area-card animate-on-scroll"><svg class="icon" viewBox="0 0 24 24"><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.22C16.5,7.69 17.21,8 18,8A3,3 0 0,0 18,2A3,3 0 0,0 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.78C7.5,9.31 6.79,9 6,9A3,3 0 0,0 6,15A3,3 0 0,0 9,18C9,17.76 8.96,17.53 8.91,17.3L16.04,21.42C16.56,21.94 17.24,22.24 18,22.24A3.91,3.91 0 0,0 18,16.08Z"/></svg><h3>Direito Trabalhista</h3><p>Defesa dos direitos do trabalhador, com acompanhamento em audiências, ações de rescisão indireta do contrato de trabalho, reversão de justa causa, ações indenizatórias por acidente de trabalho, estabilidade para gestantes e mais.</p></div> <div class="area-card animate-on-scroll"><svg class="icon" viewBox="0 0 24 24"><path d="M12,3L1,9L12,15L23,9L12,3M5,10.5L12,14.3L19,10.5L12,6.7L5,10.5M5,13.4L12,17.2L19,13.4V15.5L12,19.3L5,15.5V13.4Z"/></svg><h3>Direito Previdenciário</h3><p>Assessoria para garantir seu benefício junto ao INSS, incluindo: Benefício de Prestação Continuada (BPC/LOAS), aposentadoria por tempo de contribuição, aposentadoria por invalidez (doença ou acidente de trabalho), pensão por morte e outros auxílios.</p></div> <div class="area-card animate-on-scroll"><svg class="icon" viewBox="0 0 24 24"><path d="M10.5,13.5H8V16H10.5V13.5M16,13.5H13.5V16H16V13.5M20,4H4A2,2 0 0,0 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V6A2,2 0 0,0 20,4M20,18H4V8H20V18Z"/></svg><h3>Direito Médico e da Saúde</h3><p>Lutamos pelo direito à saúde contra negativas de planos, com foco em: cobertura para tratamentos de autismo (TEA) e Síndrome de Down, autorização para cirurgia bariátrica e reparadoras, e ações de indenização por danos morais e materiais decorrentes de erro médico.</p></div> <div class="area-card animate-on-scroll"><svg class="icon" viewBox="0 0 24 24"><path d="M12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M13,7H11V11H7V13H11V17H13V13H17V11H13V7Z"/></svg><h3>Direito do Consumidor</h3><p>Proteção contra abusos nas relações de consumo, como: indenizações por atraso de voo e perda de bagagem, restituição por cobranças indevidas, cancelamento e direito de arrependimento em compras online, problemas com produtos e serviços, e mais.</p></div> </div> </section>
+        <section id="sobre" class="content-section"> <div class="advogado-texto animate-on-scroll"><h2 class="section-title">Sobre o Advogado</h2><p>Com uma trajetória marcada pela dedicação, o Dr. Luiz Roberto Ribeiro Gomberg fundou a Gomberg&Associados para oferecer uma advocacia combativa, estratégica e, acima de tudo, humana. É um profissional altamente qualificado, com profunda especialização em diversas áreas cruciais do direito.</p><p>Sua prática abrange as esferas do <strong>Direito Civil e Processo Civil</strong>, <strong>Direito Penal e Processo Penal</strong>, e <strong>Direito Trabalhista e Processo Trabalhista</strong>. Além disso, sua atuação se estende a campos como <strong>Direito Penal Militar</strong>, <strong>Advocacia Extrajudicial</strong>, <strong>Mediação e Gestão de Conflitos</strong>, e <strong>Direito Constitucional</strong>.</p><p>Demonstrando um profundo compromisso social, possui notória especialização na <strong>defesa do executado</strong>, na sensível atuação em casos de <strong>Violência Doméstica (Medida Protetiva)</strong> e nos âmbitos da <strong>Infância Cível e Infância Infracional</strong>.</p></div> <img src="advogado.png" alt="Foto do Dr. Luiz Roberto Ribeiro Gomberg" class="advogado-foto animate-on-scroll"> </section>
+        <section id="videos" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Vídeos Informativos</h2></div> <div class="videos-grid"><div class="video-card animate-on-scroll"><video src="video1.mp4" controls preload="metadata"></video><h3>Seus Direitos no Trabalho</h3></div><div class="video-card animate-on-scroll"><video src="video2.mp4" controls preload="metadata"></video><h3>Resumo: Direitos Trabalhistas</h3></div><div class="video-card animate-on-scroll"><video src="video3.mp4" controls preload="metadata"></video><h3>Golpes em Aposentados e Pensionistas</h3></div><div class="video-card animate-on-scroll"><video src="video4.mp4" controls preload="metadata"></video><h3>Aposentadoria Rural e Híbrida</h3></div></div> </section>
+        <section id="blog" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Blog & Artigos</h2></div> <article class="blog-post animate-on-scroll"> <img src="divida_prescrita.png" alt="Arte sobre prescrição punitiva" class="blog-post-image"> <div class="blog-post-content"> <h3>A Dívida que o Tempo Apagou: A Lei e a Juventude</h3> <p>Conheça a história de Léo, um jovem lobo que, aos 19 anos, cometeu um erro e contraiu uma "dívida" com a lei da floresta. Por ser maior de 18, ele respondia por um crime, e a lei previa um longo prazo para o Estado aplicar a punição.</p> <p>O tempo passou e, quando o Conselho da Floresta finalmente decidiu levar o caso ao Grande Juiz Urso, já haviam se passado muitos anos. Parecia que Léo seria punido.</p> <p>Foi então que nosso advogado especialista, o Dr. Gomberg, com seu olhar de coruja, percebeu um detalhe vital no Grande Livro das Leis (o nosso Código Penal): como Léo tinha <strong>menos de 21 anos na época do fato</strong>, o tempo que a lei tinha para aplicar a punição era <strong>reduzido pela metade</strong>.</p> <p>Com essa tese, o Dr. Gomberg demonstrou ao Ministério Público e ao Grande Juiz Urso que o prazo do Estado para agir já havia se esgotado. A "dívida" estava legalmente vencida, ou seja, <strong>prescrita</strong>. O juiz reconheceu a prescrição da pretensão punitiva e o processo foi extinto. Léo pôde seguir sua vida em paz, provando que um conhecimento profundo e técnico da lei é a melhor defesa contra acusações, mesmo as mais antigas.</p> </div> </article> </section>
+        <section id="testimonials" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">O Que Dizem Nossos Clientes</h2></div> <div class="testimonials-grid"><div class="testimonial-card animate-on-scroll"><p class="testimonial-text">Procurei o Dr. Gomberg em um momento muito difícil da minha vida. Ele não só resolveu meu caso de partilha de bens com extrema competência, como também me ofereceu um suporte humano que fez toda a diferença. Serei eternamente grato.</p><p class="testimonial-author">— J. A. S., Cliente de Direito de Família</p></div><div class="testimonial-card animate-on-scroll"><p class="testimonial-text">A empresa não queria reconhecer meu acidente de trabalho. A atuação do escritório foi impecável e consegui todos os meus direitos, incluindo o afastamento remunerado e o tratamento. Recomendo de olhos fechados.</p><p class="testimonial-author">— M. F. P., Cliente de Direito Trabalhista</p></div><div class="testimonial-card animate-on-scroll"><p class="testimonial-text">Fui acusado injustamente e estava perdido. A defesa criminal da Gomberg&Associados foi técnica, rápida e precisa. Provaram minha inocência e hoje posso seguir com minha vida. Não tenho palavras para agradecer.</p><p class="testimonial-author">— R. C., Cliente de Direito Penal</p></div></div> </section>
+        <section id="ebook-section" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Receba Nosso Guia Exclusivo</h2></div> <div class="ebook-container animate-on-scroll"> <img src="capa_ebook.png" alt="Capa do E-book A Família da Floresta" class="ebook-cover"> <div class="ebook-form-wrapper"> <h3>A Família da Floresta</h3> <p>Entenda os principais aspectos do divórcio de forma sensível e educativa. Um guia essencial para quem busca construir novos caminhos com amor e respeito, priorizando o bem-estar dos filhos.</p> <p><strong>Deixe seu nome e email abaixo para receber o guia em seu e-mail e se inscrever em nossa lista de contatos.</strong></p> <div id="brevo-form-container"> <iframe height="350" src="https://ffeb7789.sibforms.com/serve/MUIFAAoBEv9iOQlxn0FNgZGSzD3VwaEVXr4KLzye3nxmN25MnsfbnH2gKenzCWExmNJuGuojyCRDhyODrmdfD28fRsSsNbGUHy8Oi5nBy5_HVBWsLKPScAwAz2ZpiMhxyQHbghOqoj5pnvLx2o4_P6lvP2TesLNgC7fnpDxncrqZa5MF-UEwvoQrbJzTE3ZJ2N-aTOM5qd8y6sNC" scrolling="auto" allowfullscreen style="display: block; width: 100%; border: none; margin-left: auto; margin-right: auto; max-width: 100%;"></iframe> </div> </div> </div> </section>
+        <section id="faq" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Perguntas Frequentes</h2></div> <div class="faq-container"> <div class="faq-item animate-on-scroll"><h3>A primeira consulta é cobrada?</h3><p>Oferecemos uma primeira análise do caso sem compromisso através de nossos canais de contato para entender suas necessidades. Os honorários para consultas formais e aprofundadas são discutidos com total transparência.</p></div> <div class="faq-item animate-on-scroll"><h3>Quais documentos devo levar para a consulta?</h3><p>Para o primeiro contato, traga todos os documentos que você julgar relevantes para o seu caso (contratos, notificações, e-mails, etc.) e seu documento de identificação pessoal. Isso nos ajuda a ter uma visão completa desde o início.</p></div> <div class="faq-item animate-on-scroll"><h3>Vocês atuam em outras cidades ou estados?</h3><p>Sim. Com o avanço dos processos digitais, temos capacidade de atuar em diversas comarcas e estados, oferecendo a mesma qualidade e dedicação em nossa assessoria jurídica, independentemente da sua localização.</p></div> </div> </section>
+        <section id="location" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Nossa Localização</h2></div> <div class="map-container animate-on-scroll"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.187425895747!2d-46.19633802468452!3d-23.0535973791522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cc186212579133%3A0xe5a38a8b3e8c9b33!2sR.%20Jaci%20Rocha%2C%20335%20-%20Jardim%20Rosa%20Helena%2C%20Igarat%C3%A1%20-%20SP%2C%2012350-000!5e0!3m2!1spt-BR!2sbr!4v1717804471960!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div> <p class="address animate-on-scroll"><a href="https://maps.app.goo.gl/eiJj9dyV7RrZ3GHCA" target="_blank">Rua Jaci Rocha, 335 - Jardim Rosa Helena, Igaratá - SP, 12350-000</a></p> </section>
+        <section id="contato" class="content-section"> <div class="title-wrapper"><h2 class="section-title animate-on-scroll">Formulário de Contato Geral</h2></div> <form id="contact-form" class="animate-on-scroll"> <div class="form-group"><label for="name">Nome Completo</label><input type="text" id="name" name="name" required></div> <div class="form-group"><label for="phone">Telefone (com DDD)</label><input type="tel" id="phone" name="phone" required></div> <div class="form-group"><label for="cpf">CPF</label><input type="text" id="cpf" name="cpf" required></div> <div class="form-group"><label for="rg">RG</label><input type="text" id="rg" name="rg"></div> <div class="form-group full-width"><label for="email">Email</label><input type="email" id="email" name="email" required></div> <div class="form-group full-width"><label for="message">Resumo do seu caso</label><textarea id="message" name="message" required></textarea></div> <div class="form-group full-width"><button type="submit" id="form-submit-btn">Confirmar e Escolher Envio</button></div> </form> <div id="submission-choice" class="animate-on-scroll"> <p>Ótimo! Agora, por favor, escolha o seu método de envio preferido:</p> <div class="choice-buttons"> <a href="#" id="send-whatsapp" target="_blank"><svg viewBox="0 0 24 24" style="width:24px; height:24px;"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.06 22L7.31 20.62C8.75 21.41 10.37 21.88 12.04 21.88C17.5 21.88 21.94 17.43 21.94 11.91C21.94 6.45 17.5 2 12.04 2M12.04 20.13C10.56 20.13 9.11 19.68 7.89 18.83L7.53 18.6L3.8 19.64L4.85 16L4.65 15.63C3.73 14.33 3.26 12.8 3.26 11.23C3.26 7.09 7.26 3.1 11.41 3.1C15.55 3.1 19.55 7.09 19.55 11.23C19.55 15.37 15.55 19.45 11.41 19.45M16.41 13.6C16.15 13.47 14.88 12.83 14.63 12.74C14.38 12.65 14.2 12.6 14.03 12.86C13.86 13.12 13.33 13.71 13.16 13.89C13 14.06 12.83 14.08 12.58 13.95C12.33 13.82 11.39 13.5 10.29 12.53C9.42 11.75 8.83 10.82 8.66 10.56C8.49 10.3 8.61 10.19 8.73 10.07C8.84 9.95 8.98 9.77 9.11 9.62C9.25 9.46 9.29 9.35 9.38 9.15C9.47 8.95 9.42 8.78 9.36 8.65C9.3 8.52 8.83 7.31 8.63 6.84C8.44 6.37 8.24 6.42 8.08 6.41H7.72C7.56 6.41 7.28 6.48 7.03 6.74C6.78 7 6.13 7.59 6.13 8.74C6.13 9.89 7.06 11.01 7.18 11.17C7.31 11.34 8.84 13.74 11.2 14.82C13.56 15.91 13.56 15.52 13.91 15.47C14.26 15.42 15.53 14.78 15.78 14.14C16.03 13.5 16.03 13.01 15.95 12.88C15.86 12.74 15.7 12.69 15.45 12.56Z"></path></svg> Enviar por WhatsApp</a> <a href="#" id="send-email"><svg viewBox="0 0 24 24" style="width:24px; height:24px;"><path fill="currentColor" d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6M20 6L12 11L4 6H20M20 18H4V8L12 13L20 8V18Z"></path></svg> Enviar por Email</a> </div> </div> </section>
+    </main>
+    
+    <footer>
+        <div class="lawyer-info">
+            <p>Drº. LUIZ ROBERTO RIBEIRO GOMBERG</p>
+            <p>Advogado OAB/SP 477.614</p>
+        </div>
+        <div class="footer-socials">
+            <h3>Nossas Redes Sociais</h3>
+            <div class="footer-socials-links">
+                <a href="https://www.facebook.com/luiz.roberto.ribeiro.gomberg.67768" target="_blank" aria-label="Facebook"><svg class="social-icon" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.32 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg></a>
+                <a href="https://www.instagram.com/gomberg2023.adv/" target="_blank" aria-label="Instagram"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg></a>
+                <a href="https://x.com/lui18179" target="_blank" aria-label="X (Twitter)"><svg class="social-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
             </div>
         </div>
-    </section>
-
-    <!-- Seção Áreas de Atuação -->
-    <section class="py-12 px-4 bg-white">
-          <!-- ... (Código Áreas de Atuação Omitido - Sem alterações) ... -->
-           <div class="container mx-auto">
-            <h2 class="text-3xl font-bold mb-10 text-center rainbow-text">Áreas de Atuação</h2>
-            <div class="area-container mt-8">
-                <div><button type="button" id="btn-civil" class="rainbow-button" onclick="toggleContent('content-civil')">Direito Civil</button><div id="content-civil" class="area-content hidden"><h4 class="rainbow-text">Direito Civil</h4><p class="mb-2">Expertise em Família e Cível:</p><ul><li>Divórcio/Partilha</li><li>União Estável</li><li>Pensão Alimentícia</li><li>Guarda/Visitas</li><li>Contratos</li><li>Indenizações</li><li>Imobiliário</li></ul><p class="mt-3 text-xs text-gray-500 italic">Soluções jurídicas personalizadas.</p></div></div>
-                <div><button type="button" id="btn-trabalhista" class="rainbow-button" onclick="toggleContent('content-trabalhista')">Direito Trabalhista</button><div id="content-trabalhista" class="area-content hidden"><h4 class="rainbow-text">Direito Trabalhista</h4><p class="font-semibold mb-3">Defesa de direitos na relação de trabalho:</p><ul><li><strong>Rescisão Indireta:</strong> Quando a falta grave é do empregador.</li><li><strong>Assédio Moral/Sexual:</strong> Combate e reparação.</li><li><strong>Verbas Rescisórias:</strong> Cálculo e cobrança.</li><li>Horas Extras, Adicionais</li><li>Acidente de Trabalho</li></ul><p class="mt-4 text-xs italic text-gray-600">Protegendo seus direitos trabalhistas.</p></div></div>
-                <div><button type="button" id="btn-penal" class="rainbow-button" onclick="toggleContent('content-penal')">Direito Penal</button><div id="content-penal" class="area-content hidden"><h4 class="rainbow-text">Direito Penal</h4><p class="mb-2">Atuação em todas as fases:</p><ul><li>Acompanhamento em Delegacia</li><li>Audiências</li><li>ANPP</li><li>Liberdade/HC</li><li>Execução Penal</li><li>Tribunal do Júri</li><li>Assistência à Acusação</li></ul><p class="mt-3 text-xs text-gray-500 italic">Defesa técnica especializada.</p></div></div>
-                <div><button type="button" id="btn-previdenciario" class="rainbow-button" onclick="toggleContent('content-previdenciario')">Direito Previdenciário</button><div id="content-previdenciario" class="area-content hidden"><h4 class="rainbow-text">Direito Previdenciário</h4><p class="mb-2">Seu benefício INSS:</p><ul><li>BPC/LOAS</li><li>Auxílios Incapacidade</li><li>Aposentadorias</li><li>Pensão por Morte</li><li>Acidente de Trabalho</li><li>Revisões/Recursos</li></ul><p class="mt-3 text-xs text-gray-500 italic">Assessoria completa.</p></div></div>
-                <div><button type="button" id="btn-medico" class="rainbow-button" onclick="toggleContent('content-medico')">Direito Médico</button><div id="content-medico" class="area-content hidden"><h4 class="rainbow-text">Direito Médico/Saúde</h4><p class="mb-2">Defesa de pacientes:</p><ul><li>Negativas Planos Saúde</li><li>Acesso a Tratamentos (TEA, etc.)</li><li>Medicamentos</li><li>Erro Médico</li><li>Direitos do Paciente</li><li>Liminares Urgentes</li></ul><p class="mt-3 text-xs text-gray-500 italic">Protegendo seu direito à saúde.</p></div></div>
-                <div><button type="button" id="btn-consumidor" class="rainbow-button" onclick="toggleContent('content-consumidor')">Direito do Consumidor</button><div id="content-consumidor" class="area-content hidden"><h4 class="rainbow-text">Direito do Consumidor</h4><p class="mb-2">Proteção nas relações de consumo:</p><ul><li>Revisão Contratos</li><li>Juros Abusivos</li><li>Busca/Apreensão Veículos</li><li>Produtos/Serviços Defeituosos</li><li>Cobrança Indevida</li><li>Negativação Indevida</li></ul><p class="mt-3 text-xs text-gray-500 italic">Seus direitos garantidos.</p></div></div>
-                <div>
-                    <button type="button" id="btn-empresarial" class="rainbow-button" onclick="toggleContent('content-empresarial')">Direito Empresarial</button>
-                    <div id="content-empresarial" class="area-content hidden">
-                        <h4 class="rainbow-text">Direito Empresarial</h4>
-                        <p class="mb-3">O Direito Empresarial estrutura e regula as atividades de empresas e empresários. Oferecemos assessoria jurídica completa para proteger seus negócios e otimizar resultados.</p>
-                        <p class="font-semibold mb-1">Cobrança Judicial e Extrajudicial:</p>
-                        <p class="mb-3">Utilizamos o sistema jurídico de maneira estratégica para exercer os direitos dos credores, mantendo o respeito e a cordialidade. Atuamos na negociação e recuperação de créditos em diversos segmentos.</p>
-                        <ul><li>Cobrança de Dívidas Diversas</li><li>Cobrança de Cédulas de Crédito e Títulos</li><li>Recuperação de Créditos</li></ul>
-                        <p class="font-semibold mt-3 mb-1">Auditoria Jurídica:</p>
-                        <p class="mb-3">Previna surpresas jurídicas! Nossos especialistas focam em reduzir o passivo da sua empresa de forma estratégica, ágil e eficaz, analisando contratos, contas e processos judiciais.</p>
-                        <p class="font-semibold mt-3 mb-1">Outros Serviços:</p>
-                         <ul><li>Elaboração e Revisão de Contratos Comerciais</li><li>Constituição e Alteração de Sociedades</li><li>Consultoria em Compliance e Governança</li><li>Propriedade Intelectual (Marcas e Patentes)</li><li>Resolução de Litígios Empresariais</li></ul>
-                        <p class="contact-info-text">Entre em contato com um de nossos advogados.</p>
-                    </div>
-                </div>
-                <div>
-                    <button type="button" id="btn-condominial" class="rainbow-button" onclick="toggleContent('content-condominial')">Direito Condominial</button>
-                    <div id="content-condominial" class="area-content hidden">
-                        <h4 class="rainbow-text">Direito Condominial</h4>
-                        <p class="mb-3">Atuamos na regularização de condomínios, elaboração e revisão de regimentos internos e convenções, além de cobranças judiciais e extrajudiciais de taxas condominiais.</p>
-                        <p class="font-semibold mb-1">Principais Serviços:</p>
-                         <ul><li>Assessoria completa para Síndicos e Administradoras</li><li>Condução e assessoria em Assembleias de Condomínios</li><li>Elaboração e Atualização de Regimento Interno e Convenção</li><li>Mediação e Solução de Conflitos entre condôminos</li><li>Regularização documental do Condomínio</li><li>Cobrança de Inadimplentes</li></ul>
-                        <p class="mt-4">Compreendemos a complexidade das demandas condominiais e oferecemos suporte jurídico especializado para síndicos, visando maximizar o sucesso nas questões legais e contribuir para ambientes condominiais mais eficientes e harmoniosos.</p>
-                        <p class="mt-2">Síndico, conte conosco como seu parceiro jurídico estratégico!</p>
-                        <p class="contact-info-text">Entre em contato com um de nossos advogados.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Modais -->
-    <!-- ... (Código Modais Omitido - Sem alterações) ... -->
-     <div id="aboutModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('aboutModal')">×</span> <h2 class="text-2xl font-bold mb-4 rainbow-text">Sobre Nós</h2> <p class="text-gray-700 leading-relaxed text-sm">Referência em advocacia especializada, defendemos seus direitos com excelência há mais de 3 anos. Nossa equipe qualificada oferece soluções jurídicas eficientes, personalizadas e éticas, combinando tradição e inovação para os melhores resultados com abordagem estratégica e humanizada.</p> </div> </div>
-    <div id="specialtiesModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('specialtiesModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Especialidades</h2> <p class="mb-6 text-gray-600 text-sm">Atuação abrangente, incluindo:</p> <div class="grid grid-cols-2 md:grid-cols-3 gap-3"> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Civil/Família</h3><ul class="list-disc pl-4 space-y-0.5"><li>Divórcio</li><li>Pensão</li><li>Contratos</li><li>Indenizações</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Trabalhista</h3><ul class="list-disc pl-4 space-y-0.5"><li>Reclamações</li><li>Defesas</li><li>Rescisão</li><li>Assédio</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Penal</h3><ul class="list-disc pl-4 space-y-0.5"><li>Defesa Criminal</li><li>Audiências/Júri</li><li>Execução</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Previdenciário</h3><ul class="list-disc pl-4 space-y-0.5"><li>BPC/Auxílios</li><li>Aposentadorias</li><li>Revisões</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Médico/Saúde</h3><ul class="list-disc pl-4 space-y-0.5"><li>Planos Saúde</li><li>Tratamentos</li><li>Erro Médico</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Consumidor</h3><ul class="list-disc pl-4 space-y-0.5"><li>Juros Abusivos</li><li>Contratos</li><li>Negativação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Extrajudicial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Inventário/Divórcio</li><li>Mediação</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Empresarial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Contratos</li><li>Societário</li><li>Compliance</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Condominial</h3><ul class="list-disc pl-4 space-y-0.5"><li>Assembleias</li><li>Cobranças</li><li>Regimentos</li></ul></div> <div class="bg-gray-100 p-3 rounded border text-xs"><h3 class="font-semibold mb-1 rainbow-text text-sm">Outras</h3><ul class="list-disc pl-4 space-y-0.5"><li>Consulte-nos</li></ul></div> </div></div></div>
-    <div id="contactModal" class="modal"> <div class="modal-content"><span class="close" onclick="closeModal('contactModal')">×</span> <h2 class="text-2xl font-bold mb-3 text-center rainbow-text">Fale com Advogados</h2> <p class="form-description">Para receber um atendimento personalizado em seu WhatsApp, preencha o formulário abaixo. Atendimento Imediato!</p> <form id="contactForm"> <div> <label for="formName">Nome completo:</label> <input type="text" id="formName" name="name" placeholder="Seu nome completo" required> </div> <div> <label for="formEmail">E-mail:</label> <input type="email" id="formEmail" name="email" placeholder="Seu melhor e-mail" required> </div> <div> <label for="formWhatsapp">Número de WhatsApp (com DDD):</label> <input type="tel" id="formWhatsapp" name="whatsapp" placeholder="Exemplo: 11912345678" required pattern="[0-9]{10,11}" title="Digite apenas números, incluindo o DDD (10 ou 11 dígitos)"> </div> <div class="privacy-container"> <input type="checkbox" id="formPrivacy" name="privacy" required> <label for="formPrivacy" class="privacy-label">De acordo com a lei 12.965/2014 e 13.709/2018, autorizo este site enviar comunicações por e-mail ou qualquer outro meio e concordo com a sua <a href="#" target="_blank" class="underline text-blue-600 hover:text-blue-800">política de privacidade</a>.</label> </div> <button type="submit">Enviar para WhatsApp</button> </form> </div> </div>
-    <div id="teamModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('teamModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossa Equipe</h2> <div class="team-member"> <h3>Dr. Luiz Roberto Ribeiro Gomberg</h3> <span class="oab">OAB/SP 477.614</span> <p>Esp. em Direito Civil, Trabalhista, Penal, Militar, Constitucional, Médico, Consumidor, Previdenciário, Empresarial, Condominial. Atua em mediação, conflitos, advocacia extrajudicial, defesa executado, execuções.</p> </div> <div class="team-member"> <h3>Drª. Sara Ribeiro Gomberg</h3> <span class="oab">OAB/SP 409.398</span> <p>Esp. em Direito Civil, Direito do Trabalho e Direito Criminal.</p></div></div></div>
-    <div id="socialModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('socialModal')">×</span> <h2 class="text-2xl font-bold mb-6 rainbow-text">Nossas Redes Sociais</h2> <div class="social-links"><a href="https://www.facebook.com/luiz.roberto.ribeiro.gomberg.67768" target="_blank" rel="noopener noreferrer" class="facebook"><i class="fab fa-facebook-f"></i><span>Facebook</span></a><a href="https://www.instagram.com/gomberg2023.adv/" target="_blank" rel="noopener noreferrer" class="instagram"><i class="fab fa-instagram"></i><span>Instagram</span></a><a href="https://x.com/lui18179" target="_blank" rel="noopener noreferrer" class="twitter"><i class="fa-brands fa-x-twitter"></i><span>X (Twitter)</span></a></div></div></div>
-
-     <!-- ===== NOVO MODAL DE LOCALIZAÇÃO ===== -->
-    <div id="locationModal" class="modal">
-        <div class="modal-content">
-             <span class="close" onclick="closeModal('locationModal')">×</span>
-             <!-- Iframe do Google Maps Embed -->
-             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.872906454205!2d-46.68298812465774!3d-23.50187397884169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce580325833679%3A0x867763f639e64928!2sRua%20Manoel%20de%20Andrade%2C%20209%20-%20Vila%20Baruel%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2002520-020!5e0!3m2!1spt-BR!2sbr!4v1716325733154!5m2!1spt-BR!2sbr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-             <!-- Link opcional para abrir no Google Maps -->
-             <div class="text-center mt-3">
-                 <a href="https://maps.app.goo.gl/XZWMS4akK6mLcPWz6" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 text-sm underline">
-                    Abrir no Google Maps
-                 </a>
-             </div>
-        </div>
-    </div>
-    <!-- ===== FIM DO MODAL DE LOCALIZAÇÃO ===== -->
-
-    <!-- Footer Ajustado -->
-    <footer class="bg-black text-white py-6 md:py-8 px-4">
-        <div class="container mx-auto">
-             <div class="flex flex-col md:flex-row justify-center md:justify-between items-center">
-                <div class="footer-logo-section">
-                    <div class="flex items-center">
-                        <div class="header-logo-circle w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center mr-2 md:mr-3"><span class="text-black font-bold text-sm md:text-base">G&A</span></div>
-                        <h3 class="text-lg md:text-xl font-bold rainbow-text">Gomberg&Associados</h3>
-                    </div>
-                    <p class="mt-1 text-gray-400 text-xs md:ml-12">Excelência jurídica desde 2022</p>
-                </div>
-                 <div class="footer-icons-section mt-4 md:mt-0">
-                     <div class="flex space-x-3 md:space-x-4">
-                         <a href="https://wa.me/5511973383818" target="_blank" rel="noopener noreferrer" class="rainbow-button p-2 md:p-3 rounded-full" title="WhatsApp"><i class="fab fa-whatsapp text-base md:text-lg"></i></a>
-                         <a href="mailto:gomberg2010@hotmail.com" class="rainbow-button p-2 md:p-3 rounded-full" title="E-mail"><i class="fas fa-envelope text-base md:text-lg"></i></a>
-                     </div>
-                 </div>
-             </div>
-             <div class="border-t border-gray-700 mt-6 pt-4 text-center text-gray-400 text-xs">
-                <p>© 2024 Gomberg&Associados - Todos os direitos reservados.</p>
-                <p class="mt-1">OAB/SP 477.614</p>
-            </div>
-            <div class="footer-legal-links">
-                <ul>
-                    <li><a href="https://www.planalto.gov.br/ccivil_03/Constituicao/Constituicao.htm" target="_blank" rel="noopener noreferrer">CONSTITUIÇÃO FEDERAL</a></li>
-                    <li><a href="https://www.planalto.gov.br/ccivil_03/LEIS/2002/L10406compilada.htm" target="_blank" rel="noopener noreferrer">CÓDIGO CIVIL</a></li>
-                    <li><a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm" target="_blank" rel="noopener noreferrer">CÓDIGO PENAL</a></li>
-                    <li><a href="https://www.planalto.gov.br/ccivil_03/Leis/2003/L10.741.htm" target="_blank" rel="noopener noreferrer">ESTATUTO DA PESSOA IDOSA</a></li>
-                </ul>
-            </div>
-
-             <!-- Contador de Visitas e Localização (Link agora abre Modal) -->
-             <div class="footer-bottom-info">
-                 <span class="footer-counter-wrapper rainbow-button">
-                    <a href='https://www.free-counters.org/'> Contador De Visitas</a>
-                    <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=a700829a39034f16f5198d237914602b4533bd9a'></script>
-                    <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1181760/t/0"></script>
-                 </span>
-                 <div class="footer-location">
-                    <!-- Link modificado para abrir o modal -->
-                    <a onclick="openModal('locationModal')">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Localização</span>
-                    </a>
-                 </div>
-             </div>
-        </div>
+        <p class="copyright">TODOS OS DIREITOS RESERVADOS - 2025</p>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Botões Flutuantes -->
+    <a href="https://wa.me/5511973383818" target="_blank" class="floating-btn" aria-label="Fale conosco no WhatsApp"><svg viewBox="0 0 32 32" style="width: 32px; height: 32px;"><path fill="currentColor" d="M16.21,4.46A11.75,11.75,0,0,0,4.46,16.21,11.75,11.75,0,0,0,16.21,28c3.12,0,6-1.25,8.1-3.34l3.1,1-1-3.1a11.74,11.74,0,0,0,2-8.6A11.75,11.75,0,0,0,16.21,4.46ZM21.62,18.51c-.13.35-.45.68-1,.81-.46.13-1.09.2-1.78-.07a9.23,9.23,0,0,1-3.48-2.07,10.38,10.38,0,0,1-2.39-3.23c-.22-.44-.16-1,.06-1.35s.44-.57.67-.78.47-.41.67-.7.34-.51.2-1a4.29,4.29,0,0,0-1.1-2.1c-.24-.26-.51-.31-.73-.31s-.47.05-.67.05a2.6,2.6,0,0,0-1.84.85,3.34,3.34,0,0,0-1.1,2.57,6.43,6.43,0,0,0,1.5,3.8,11.43,11.43,0,0,0,5,5.1,5.2,5.2,0,0,0,2.68.9,4,4,0,0,0,2.1-.85,2.1,2.1,0,0,0,.9-1.59C21.84,19.11,21.75,18.86,21.62,18.51Z"></path></svg></a>
+    <a href="#home" id="back-to-top" class="floating-btn" aria-label="Voltar ao topo"><svg viewBox="0 0 24 24" style="width: 32px; height: 32px;"><path fill="currentColor" d="M7.41,15.41L12,10.83L16.59,15.41L18,14L12,8L6,14L7.41,15.41Z" /></svg></a>
+
     <script>
-         // ... (Código JavaScript Omitido - Sem alterações, pois openModal/closeModal já existem) ...
-         function openModal(modalId) { const modal = document.getElementById(modalId); if (modal) { document.querySelectorAll(".modal").forEach(otherModal => { if (otherModal.style.display === "block" && otherModal.id !== modalId) { closeModal(otherModal.id); } }); modal.style.display = "block"; document.body.style.overflow = "hidden"; } else { console.error("Modal not found:", modalId); } }
-        function closeModal(modalId) { const modal = document.getElementById(modalId); if (modal) { modal.style.display = "none"; if (!document.querySelector('.modal[style*="display: block"]')) { document.body.style.overflow = "auto"; } } }
-        window.addEventListener("click", function(event) { document.querySelectorAll(".modal").forEach(modal => { if (event.target == modal) { closeModal(modal.id); } }); });
-        window.addEventListener("keydown", function(event) { if (event.key === "Escape") { document.querySelectorAll('.modal[style*="display: block"]').forEach(modal => { closeModal(modal.id); }); } });
-        function toggleMobileMenu() { const menu = document.getElementById("mobileMenu"); if (menu) { menu.classList.toggle("hidden"); } else { console.error("Mobile menu not found."); } }
-        function toggleContent(contentId) { const contentElement = document.getElementById(contentId); if (contentElement) { const isHidden = contentElement.classList.contains("hidden"); document.querySelectorAll(".area-container .area-content").forEach(otherContent => { if (otherContent.id !== contentId) { otherContent.classList.add("hidden"); } }); if (isHidden) { contentElement.classList.remove("hidden"); } else { contentElement.classList.add("hidden"); } } else { console.error("Content element not found:", contentId); } }
-        const contactForm = document.getElementById('contactForm'); if (contactForm) { contactForm.addEventListener('submit', function(event) { event.preventDefault(); const name = document.getElementById('formName').value; const email = document.getElementById('formEmail').value; const whatsapp = document.getElementById('formWhatsapp').value; const privacy = document.getElementById('formPrivacy').checked; if (!privacy) { alert('Você precisa concordar com a política de privacidade para continuar.'); return; } const targetWhatsapp = "5511973383818"; const message = `Olá! Gostaria de um contato.\n\nNome: ${name}\nEmail: ${email}\nMeu WhatsApp: ${whatsapp}`; const encodedMessage = encodeURIComponent(message); const whatsappUrl = `https://wa.me/${targetWhatsapp}?text=${encodedMessage}`; window.open(whatsappUrl, '_blank'); closeModal('contactModal'); }); } else { console.error("Formulário de contato (contactForm) não encontrado."); }
-        document.addEventListener("DOMContentLoaded", () => console.log("Page Ready."));
+        // Javascript final e completo (sem alterações)
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        themeToggle.addEventListener('click', () => { body.classList.toggle('light-mode'); body.classList.toggle('dark-mode'); themeToggle.textContent = body.classList.contains('light-mode') ? '☀️' : '🌙'; });
+        const backToTopButton = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => { if (window.scrollY > 300) { backToTopButton.classList.add('visible'); } else { backToTopButton.classList.remove('visible'); } });
+        const observer = new IntersectionObserver((entries) => { entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); } }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach((element) => { observer.observe(element); });
+        
+        const contactForm = document.getElementById('contact-form');
+        const submissionChoice = document.getElementById('submission-choice');
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const cpf = document.getElementById('cpf').value;
+            const rg = document.getElementById('rg').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const formattedMessage = `Olá Dr. Luiz Roberto Ribeiro Gomberg, vi seu site e gostaria de um contato.\n\n` + `--- DADOS DO FORMULÁRIO ---\n`+ `Nome: ${name}\n` + `Telefone: ${phone}\n` + `Email: ${email}\n` + `CPF: ${cpf}\n` + `RG: ${rg}\n\n` + `Resumo do Caso:\n${message}`;
+            const whatsappLink = `https://wa.me/5511973383818?text=${encodeURIComponent(formattedMessage)}`;
+            const emailLink = `mailto:gombergeassociados@gmail.com?subject=${encodeURIComponent('Contato do Site - Solicitação de Cliente')}&body=${encodeURIComponent(formattedMessage)}`;
+            document.getElementById('send-whatsapp').href = whatsappLink;
+            document.getElementById('send-email').href = emailLink;
+            contactForm.style.display = 'none';
+            submissionChoice.style.display = 'block';
+        });
+
     </script>
 
 </body>
